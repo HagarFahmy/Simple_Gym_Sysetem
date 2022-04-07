@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class CityManagerController extends CommonController
 {
     use ImageTrait;
-    protected string $module = 'cityManagers';
+    protected string $module = 'city-managers';
 
     protected string $permissionGroup = 'cityManagers';
 

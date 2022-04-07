@@ -21,7 +21,7 @@ class CityManagersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.city-manager.action');
+            ->addColumn('action', 'dashboard.cityManager.action');
     }
 
     /**
@@ -32,7 +32,8 @@ class CityManagersDataTable extends DataTable
      */
     public function query(Admin $model)
     {
-        return $model->newQuery();
+        $query= Admin::role('City Manager')->with('city');
+        return $this->applyScopes($query);
     }
 
     /**

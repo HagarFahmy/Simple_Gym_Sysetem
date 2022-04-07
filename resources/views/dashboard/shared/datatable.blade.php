@@ -5,7 +5,7 @@
 @section('content')
 
 
-    <h1>Cities</h1>
+    <h1>{{$permissionGroup}}</h1>
 
     <div class="box">
         <div class="box-header with-border">
