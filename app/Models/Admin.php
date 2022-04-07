@@ -46,9 +46,20 @@ class Admin extends Authenticatable
         return asset('storage/images/' . self::LOCATION . '/' . $this->image);
     }
 
-    public function city()
+    public function city() // city manager
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function gyms() // city manager
+    {
+        return $this->hasMany(Gym::class);
+    }
+
+    
+    public function gym() // gym manager
+    {
+        return $this->belongsTo(Gym::class);
     }
 
 }

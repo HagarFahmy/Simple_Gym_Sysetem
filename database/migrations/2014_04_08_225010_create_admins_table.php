@@ -32,9 +32,16 @@ class CreateAdminsTable extends Migration
             $table->string('image')->default('default.jpg');
             $table->boolean('status')->default(true);
 
+            // city manager 
             $table->unsignedBigInteger('city_id')->nullable();
             $table->foreign('city_id')->references('id')->on('cities');
+
+            // gym manager 
+            $table->unsignedBigInteger('gym_id')->nullable();
+            $table->foreign('gym_id')->references('id')->on('gyms')->onDelete('cascade');
+      
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
