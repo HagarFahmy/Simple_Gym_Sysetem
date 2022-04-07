@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\DataTables\CityManagersDataTable;
 use App\Http\Requests\CityManagerRequest;
 use App\Http\Traits\ImageTrait;
 use App\Models\Admin;
@@ -14,12 +15,18 @@ class CityManagerController extends CommonController
     use ImageTrait;
     protected string $module = 'cityManagers';
 
-   public function index()
-   {
-       $cityManagers= Admin::role('City Manager')->with('city')->get();
-       return view('dashboard.cityManager.index',['cityManagers'=>$cityManagers]);
+    protected string $permissionGroup = 'cityManagers';
 
-   }
+    public function __construct(CityManagersDataTable $modelDatatable)
+    {
+        $this->modelDatatable = $modelDatatable;
+    }
+//    public function index()
+//    {
+//        $cityManagers= Admin::role('City Manager')->with('city')->get();
+//        return view('dashboard.cityManager.index',['cityManagers'=>$cityManagers]);
+
+//    }
    public function create()
    {
         $cities = City::doesnthave('cityManager')->pluck('name', 'id');
