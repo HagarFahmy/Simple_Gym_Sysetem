@@ -15,4 +15,9 @@ class City extends Model
     {
         return $this->hasOne(Admin::class);
     }
+
+    public function gyms()
+    {
+        return $this->hasMany(Gym::class);
+    }
 }
