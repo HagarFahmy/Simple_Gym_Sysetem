@@ -74,7 +74,7 @@
             @endcan
             @can(['list-coaches', 'create-coaches'], 'admin')
                 <li>
-                    <a href="../widgets.html">
+                    <a href="{{route('dashboard.coaches.index')}}">
                         <i class="fa fa-th"></i> <span>Coaches</span>
                         <span class="pull-right-container">
                 </span>

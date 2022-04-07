@@ -10,7 +10,8 @@ class Coach extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = [
-        'name'
+        'name',
+        'gym_id'
     ];
 
     public function training_sessions() // done

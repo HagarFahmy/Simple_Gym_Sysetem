@@ -2,12 +2,15 @@
 
 @section('content')
 <div class=" ">
-<div class="card mx-auto" style="width: 18rem;">
-  <img src="{{$cityManager->image}}" class="card-img-top">
+<div class="card mx-auto" style="width: 22rem; margin:2rem auto;">
+  <img src="{{'images/admins/'.$cityManager->image}}" class="card-img-top">
   <div class="card-body">
-    <h5 class="card-title">{{$cityManager->name}}</h5>
-    <p class="card-text">{{$cityManager->email}}</p>
-    <a href="#" class="btn btn-primary">back</a>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{$cityManager->name}}</li>
+    <li class="list-group-item">{{$cityManager->email}}</li>
+    <li class="list-group-item">{{$cityManager->city->name}}</li>
+  </ul>
+
   </div>
 </div>
 </div>

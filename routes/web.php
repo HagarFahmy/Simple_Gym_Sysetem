@@ -4,6 +4,8 @@ use App\Http\Controllers\Backend\AdminAuthController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Backend\CityManagerController;
+use \App\Http\Controllers\Backend\CoachController;
+use \App\Http\Controllers\Backend\CitiesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +30,8 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
 
     Route::get('home', [\App\Http\Controllers\Backend\HomeController::class, 'index'])->name('home');
     Route::Resource('city-managers',CityManagerController::class);
-    Route::resource('cities',\App\Http\Controllers\Backend\CitiesController::class);
+    Route::Resource('coaches',CoachController::class);
+    Route::resource('cities',CitiesController::class);
 
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

@@ -44,6 +44,7 @@ class CitiesController extends CommonController
 
     public function destroy(City $city)
     {
+        if($city->cityManager!=null)
         $city->cityManager->update(['status' => false]);
         $city->delete();
         return redirect()->route('dashboard.cities.index');
