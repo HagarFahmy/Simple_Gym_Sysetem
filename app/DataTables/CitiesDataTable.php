@@ -31,7 +31,8 @@ class CitiesDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1);
+                    ->orderBy(1)
+                    ->addAction(['width' => '200px']);
     }
 
     /**
@@ -46,11 +47,11 @@ class CitiesDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('created_at'),
-            Column::computed('action')
-                ->exportable(false)
-                ->printable(false)
-                ->width(60)
-                ->addClass('text-center'),
+            // Column::computed('action')
+            //     ->exportable(false)
+            //     ->printable(false)
+            //     ->width(60)
+            //     ->addClass('text-center'),
         ];
     }
 

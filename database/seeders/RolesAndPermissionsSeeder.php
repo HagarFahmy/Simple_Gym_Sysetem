@@ -14,7 +14,7 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $models = [
-            'admins', 'roles', 'permissions', 'gymManagers', 'cityManagers', 'users', 'cities', 'gyms', 'trainingPackages', 'coaches', 'attendance', 'buyPackage', 'revenue'
+            'admins', 'roles', 'permissions', 'gymManagers', 'cityManagers', 'users', 'cities', 'gyms', 'trainingPackages', 'trainingSession','coaches', 'attendance', 'buyPackage', 'revenue'
             ];
         $actions = ['list','create', 'update', 'delete'];
 
@@ -38,7 +38,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
 
         // Gym Manager Role
-        $gymManagerPremissionsModules = ['trainingPackages', 'attendance', 'buyPackage', 'revenue'];
+        $gymManagerPremissionsModules = ['trainingSession', 'attendance', 'buyPackage', 'revenue'];
         $gymManagerPremissions = [];
         foreach ($gymManagerPremissionsModules as $key => $value) {
             foreach ($actions as $action) {
@@ -50,7 +50,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
 
         // City Manager Role
-        $cityManagerPremissionsModules = ['trainingPackages', 'attendance', 'buyPackage', 'revenue', 'gyms', 'gymManagers'];
+        $cityManagerPremissionsModules = ['trainingSession', 'attendance', 'buyPackage', 'revenue', 'gyms', 'gymManagers'];
         $cityManagerPremissions = [];
         foreach ($cityManagerPremissionsModules as $key => $value) {
             foreach ($actions as $action) {

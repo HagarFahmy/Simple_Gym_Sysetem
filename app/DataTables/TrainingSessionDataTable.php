@@ -21,7 +21,7 @@ class TrainingSessionDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'trainingsessiondatatable.action');
+            ->addColumn('action', 'dashboard.trainingSession.action');
     }
 
     /**
@@ -47,6 +47,7 @@ class TrainingSessionDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
+                    ->addAction(['width' => '200px'])
                     ->orderBy(1);
     }
 
@@ -63,11 +64,11 @@ class TrainingSessionDataTable extends DataTable
             Column::make('starts_at'),
             Column::make('finishes_at'),
             Column::make('gym_id'),
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->width(60)
+            //       ->addClass('text-center'),
             
         ];
     }

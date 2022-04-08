@@ -1,4 +1,4 @@
-<div class="row">
+<div  id="buttonaction">
 @can('update-', 'admin')
     <a class="btn btn-sm btn-info col-4 " href="{{ route('dashboard.coaches.edit', $id) }}">Edit</a>
 @endcan

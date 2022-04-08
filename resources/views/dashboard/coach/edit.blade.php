@@ -45,7 +45,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button type="reset" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-info pull-right">Create</button>
+                <button type="submit" class="btn btn-info pull-right">Edit</button>
             </div>
             <!-- /.box-footer -->
         </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TrainingSessionRequest extends FormRequest
@@ -13,7 +14,7 @@ class TrainingSessionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,10 @@ class TrainingSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>['required','string','min:5','max:50','string',Rule::unique('training_sessions')->ignore($this->name,'name')],
+            'starts_at'=>['required','date',Rule::unique('training_sessions')->ignore($this->starts_at,'starts_at')],
+            'finishes_at'=>['required','date',Rule::unique('training_sessions')->ignore($this->starts_at,'finishes_at'),'after:starts_at'],
+            'gym_id' => ['required','int'],
         ];
     }
 }

@@ -1,3 +1,4 @@
+<div id="buttonaction">
 @can('update-cities', 'admin')
     <a class="btn btn-sm btn-info" href="{{ route('dashboard.cities.edit', $id) }}">Edit</a>
 @endcan
@@ -8,3 +9,4 @@
         <button class="btn btn-sm btn-danger">Delete</button>
     </form>
 @endcan
+</div>
