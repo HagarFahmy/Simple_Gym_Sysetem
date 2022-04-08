@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Backend\CityManagerController;
 use \App\Http\Controllers\Backend\CoachController;
 use \App\Http\Controllers\Backend\CitiesController;
+use \App\Http\Controllers\Backend\TrainingSessionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::Resource('city-managers',CityManagerController::class);
     Route::Resource('coaches',CoachController::class);
     Route::resource('cities',CitiesController::class);
+    Route::resource('trainin-session',TrainingSessionController::class);
 
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

@@ -2,15 +2,14 @@
 
 namespace App\DataTables;
 
-use App\Models\Admin;
-use App\Models\City;
+use App\Models\TrainingSession;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CityManagersDataTable extends DataTable
+class TrainingSessionDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,19 +21,18 @@ class CityManagersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.cityManager.action');
+            ->addColumn('action', 'trainingsessiondatatable.action');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\DataTables\CityManagersDataTable $model
+     * @param \App\Models\TrainingSessionDataTable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Admin $model)
+    public function query(TrainingSession $model)
     {
-        $model= Admin::role('City Manager')->with('city');
-        return $this->applyScopes($model);
+        return $model->newQuery();
     }
 
     /**
@@ -45,7 +43,7 @@ class CityManagersDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('citymanagersdatatable-table')
+                    ->setTableId('trainingsessiondatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -62,12 +60,13 @@ class CityManagersDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('email'),
-            Column::make('city_id'),
+            Column::make('starts_at'),
+            Column::make('finishes_at'),
+            Column::make('gym_id'),
             Column::computed('action')
                   ->exportable(false)
                   ->printable(false)
-                  ->width(100)
+                  ->width(60)
                   ->addClass('text-center'),
             
         ];
@@ -80,6 +79,6 @@ class CityManagersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'CityManagers_' . date('YmdHis');
+        return 'TrainingSession_' . date('YmdHis');
     }
 }
