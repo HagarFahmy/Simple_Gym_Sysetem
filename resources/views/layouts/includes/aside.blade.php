@@ -21,7 +21,7 @@
             @can(['list-gymManagers', 'create-gymManagers'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Gym Managers</span>
+                        <i class="fa-regular fa-address-card nav-icon"></i> <span>Gym Managers</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -30,7 +30,7 @@
             @can(['list-cityManagers', 'create-cityManagers'], 'admin')
                 <li>
                     <a href="{{ route('dashboard.city-managers.index') }}">
-                        <i class="fa fa-th"></i> <span>City Managers</span>
+                        <i class="fa-solid fa-address-card"></i> <span>City Managers</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -39,7 +39,7 @@
             @can(['list-users', 'create-users'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Users</span>
+                        <i class="fa-solid fa-user-group nav-icon"></i> <span>Users</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -48,7 +48,7 @@
             @can(['list-cities', 'create-cities'], 'admin')
                 <li>
                     <a href="{{ route('dashboard.cities.index') }}">
-                        <i class="fa fa-th"></i> <span>Cities</span>
+                        <i class="fa-solid fa-building"></i> <span>Cities</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -57,7 +57,7 @@
             @can(['list-gyms', 'create-gyms'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Gyms</span>
+                        <i class="fa-solid fa-dumbbell nav-icon"></i> <span>Gyms</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -66,7 +66,16 @@
             @can(['list-trainingPackages', 'create-trainingPackages'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Training Packages</span>
+                        <i class="fa-solid fa-box-archive"></i> <span>Training Packages</span>
+                        <span class="pull-right-container">
+                </span>
+                    </a>
+                </li>
+            @endcan
+            @can(['list-trainingSession', 'create-trainingSession'], 'admin')
+                <li>
+                    <a href="../widgets.html">
+                        <i class="fa-solid fa-person-running"></i> <span>Training Session</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -75,7 +84,7 @@
             @can(['list-coaches', 'create-coaches'], 'admin')
                 <li>
                     <a href="{{route('dashboard.coaches.index')}}">
-                        <i class="fa fa-th"></i> <span>Coaches</span>
+                        <i class="fa-solid fa-hand-back-fist nav-icon"></i> <span>Coaches</span>
                         <span class="pull-right-container">
                 </span>
                     </a>
@@ -84,7 +93,7 @@
             @can(['list-attendance', 'create-attendance'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Attendance</span>
+                        <i class="fa-solid fa-calendar-days"></i> <span>Attendance</span>
                         <span class="pull-right-container">
             </span>
                     </a>
@@ -93,7 +102,7 @@
             @can(['list-buyPackage', 'create-buyPackage'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Buy Package</span>
+                        <i class="fa-solid fa-money-check-dollar"></i> <span>Buy Package for user</span>
                         <span class="pull-right-container">
             </span>
                     </a>
@@ -102,7 +111,7 @@
             @can(['list-revenue', 'create-revenue'], 'admin')
                 <li>
                     <a href="../widgets.html">
-                        <i class="fa fa-th"></i> <span>Revenue</span>
+                        <i class="fa-solid fa-sack-dollar"></i> <span>Revenue</span>
                         <span class="pull-right-container">
             </span>
                     </a>

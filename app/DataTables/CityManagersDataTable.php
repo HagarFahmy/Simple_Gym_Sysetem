@@ -48,7 +48,8 @@ class CityManagersDataTable extends DataTable
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1);
+                    ->orderBy(1)
+                    ->addAction(['width' => '200px']);
     }
 
     /**
@@ -62,11 +63,11 @@ class CityManagersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(100)
-                  ->addClass('text-center'),
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->width(100)
+            //       ->addClass('text-center'),
             
         ];
     }
