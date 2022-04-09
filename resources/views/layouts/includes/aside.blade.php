@@ -38,7 +38,7 @@
             @endcan
             @can(['list-users', 'create-users'], 'admin')
                 <li>
-                    <a href="../widgets.html">
+                    <a href="{{ route('dashboard.users.index') }}">
                         <i class="fa-solid fa-user-group nav-icon"></i> <span>Users</span>
                         <span class="pull-right-container">
                 </span>

@@ -51,4 +51,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(TrainingSession::class, 'user_training_session', 'training_session_id', 'user_id');
     }
+
+    public function gym()
+    {
+        return $this->belongsTo(Gym::class);
+        
+    }
 }

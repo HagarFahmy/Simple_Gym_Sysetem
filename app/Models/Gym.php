@@ -40,4 +40,9 @@ class Gym extends Model
     {
         return $this->hasMany(TrainingSession::class);
     }
+
+    public function user() // done
+    {
+        return $this->hasMany(User::class);
+    }
 }
