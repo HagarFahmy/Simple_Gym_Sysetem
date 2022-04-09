@@ -17,7 +17,8 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'created_at' => now(),
         ];
     }
 }

@@ -17,5 +17,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(AdminSeeder::class);
         $this->call(CitySeeder::class);
+        $this->call(GymSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(CoachSeeder::class);
+        $this->call(TrainingSessionsSeeder::class);
+        $this->call(TrainingPackagesSeeder::class);
+        $this->call(RevenueSeeder::class);
+        $this->call(AttendenceSeeder::class);
+                
+        
     }
 }

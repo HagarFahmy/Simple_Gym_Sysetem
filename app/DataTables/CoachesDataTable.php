@@ -2,6 +2,7 @@
 
 namespace App\DataTables;
 
+
 use App\Models\Coach;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
@@ -11,12 +12,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class CoachesDataTable extends DataTable
 {
-    /**
-     * Build DataTable class.
-     *
-     * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
-     */
+    
     public function dataTable($query)
     {
         return datatables()
@@ -24,22 +20,19 @@ class CoachesDataTable extends DataTable
             ->addColumn('action', 'dashboard.coach.action');
     }
 
-    /**
-     * Get query source of dataTable.
-     *
-     * @param \App\Models\CoachesDataTable $model
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
+   
     public function query(Coach $model)
     {
-        return $model->newQuery();
+        // $model= Admin::role('City Manager')->with('city');
+        // return $this->applyScopes($model);
+        
+        $model = Coach::with(['gym']);
+       
+        return $this->applyScopes($model);
+        
+      // return $model->newQuery();
     }
 
-    /**
-     * Optional method if you want to use html builder.
-     *
-     * @return \Yajra\DataTables\Html\Builder
-     */
     public function html()
     {
         return $this->builder()
@@ -51,6 +44,11 @@ class CoachesDataTable extends DataTable
                     ->addAction(['width' => '200px']);
     }
 
+    // ->columns([
+    //     {data: 'id', name: 'posts.id'},
+    //      {data: 'name', name: 'users.name'},
+    //     ])
+
     /**
      * Get columns.
      *
@@ -59,9 +57,11 @@ class CoachesDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('name'),
-            Column::make('gym_id'),
+
+            
+            // Column::make('id'),
+            // Column::make('name'),
+            // Column::make('gym_id'),
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)
