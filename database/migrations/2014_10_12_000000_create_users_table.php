@@ -22,8 +22,7 @@ return new class extends Migration
             $table->string('profile_image')->default('default.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            
-            $table->foreignId('gym_id')->constrained('gyms');
+            // $table->foreignId('gym_id')->constrained('gyms')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
