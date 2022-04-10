@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('name', 50)->unique();
 
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete ('cascade');
+            
 
             
             $table->timestamp('created_at')->useCurrent();

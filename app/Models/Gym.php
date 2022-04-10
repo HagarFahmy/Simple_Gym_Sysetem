@@ -26,7 +26,7 @@ class Gym extends Model
         return $this->hasMany(Admin::class);
     }
 
-    public function city_managers() // done
+    public function city_manager() // done
     {
         return $this->belongsTo(Admin::class);
     }
@@ -39,5 +39,10 @@ class Gym extends Model
     public function training_sessions() // done
     {
         return $this->hasMany(TrainingSession::class);
+    }
+
+    public function user() // done
+    {
+        return $this->hasMany(User::class);
     }
 }

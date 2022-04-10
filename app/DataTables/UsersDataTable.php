@@ -2,24 +2,24 @@
 
 namespace App\DataTables;
 
-use App\Models\Attendance;
+use App\Models\User;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CitiesDataTable extends DataTable
+class UsersDataTable extends DataTable
 {
 
     public function dataTable($query)
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.attendence.action');
+            ->addColumn('action', 'dashboard.users.action');
     }
 
-    public function query(Attendance $model)
+    public function query(User $model)
     {
         return $model->newQuery();
     }
@@ -27,7 +27,7 @@ class CitiesDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('atendancedatatable-table')
+                    ->setTableId('usersdatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -45,10 +45,12 @@ class CitiesDataTable extends DataTable
         return [
 
             Column::make('id'),
-            Column::make('user_id'),
-            Column::make('training_session_id'),
-            Column::make('deleted_at'),
-
+            Column::make('name'),
+            Column::make('email'),
+            Column::make('gender'),
+            Column::make('gym_id'),
+            Column::make('profile_image'),            
+        
         ];
     }
 
@@ -59,6 +61,6 @@ class CitiesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Cities_' . date('YmdHis');
+        return 'Users_' . date('YmdHis');
     }
 }

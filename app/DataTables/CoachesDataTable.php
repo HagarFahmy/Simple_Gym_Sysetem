@@ -59,9 +59,9 @@ class CoachesDataTable extends DataTable
         return [
 
             
-            // Column::make('id'),
-            // Column::make('name'),
-            // Column::make('gym_id'),
+            Column::make('id'),
+            Column::make('name'),
+            Column::make('gym_id'),
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

@@ -38,7 +38,7 @@
             @endcan
             @can(['list-users', 'create-users'], 'admin')
                 <li>
-                    <a href="../widgets.html">
+                    <a href="{{ route('dashboard.users.index') }}">
                         <i class="fa-solid fa-user-group nav-icon"></i> <span>Users</span>
                         <span class="pull-right-container">
                 </span>
@@ -56,7 +56,7 @@
             @endcan
             @can(['list-gyms', 'create-gyms'], 'admin')
                 <li>
-                    <a href="../widgets.html">
+                    <a href="{{ route('dashboard.gyms.index') }}">
                         <i class="fa-solid fa-dumbbell nav-icon"></i> <span>Gyms</span>
                         <span class="pull-right-container">
                 </span>
