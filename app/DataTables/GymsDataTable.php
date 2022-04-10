@@ -32,7 +32,7 @@ class GymsDataTable extends DataTable
      */
     public function query(Gym $model)
     {
-        return $model->newQuery();
+        return $model->with('city_manager');
     }
 
     /**
@@ -58,11 +58,16 @@ class GymsDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return [
+        $columns = [
             Column::make('name'),
             Column::make('cover_image'),
             Column::make('created_at'),
         ];
+
+        if(auth()->user()->hasRole('Super Admin')) {
+            $columns[] = Column::make('city_manager.name')->title('Gym Manager');
+        }
+        return $columns;
     }
 
     /**

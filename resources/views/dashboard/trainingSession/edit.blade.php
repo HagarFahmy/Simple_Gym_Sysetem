@@ -13,6 +13,11 @@
             @method('put') 
             <div class="box-body">
 
+            @if($errors->any())
+                @foreach($errors->all() as $error)
+                <p>{{ $error}}</p>
+                @endforeach
+            @endif
 
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Name</label>
@@ -25,7 +30,7 @@
                     </div>
                 </div>
 
-                @if($arr->contains('id',$trainingSession->id))
+                @if(!$trainingSession->users->count())
                 <div class="form-group">
                     <label for="starts_at" class="col-sm-2 control-label">Starts At</label>
 

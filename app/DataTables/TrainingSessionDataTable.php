@@ -32,7 +32,7 @@ class TrainingSessionDataTable extends DataTable
      */
     public function query(TrainingSession $model)
     {
-        return $model->newQuery();
+        return $model->with('gym');
     }
 
     /**
@@ -63,7 +63,7 @@ class TrainingSessionDataTable extends DataTable
             Column::make('name'),
             Column::make('starts_at'),
             Column::make('finishes_at'),
-            Column::make('gym_id'),
+            Column::make('gym.name')->title('TEST'),
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

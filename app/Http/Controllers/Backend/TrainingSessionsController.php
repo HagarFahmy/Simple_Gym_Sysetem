@@ -7,6 +7,8 @@ use App\Http\Requests\TrainingSessionRequest;
 use App\Models\Coach;
 use App\Models\Gym;
 use App\Models\TrainingSession;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class TrainingSessionsController extends CommonController
 {
@@ -37,17 +39,20 @@ class TrainingSessionsController extends CommonController
 
     public function edit(TrainingSession $trainingSession)
     {
-        $arr=TrainingSession::doesntHave('users')->get();
-        $gyms = Gym::all()->pluck('name', 'id');
-        return view('dashboard.trainingSession.edit', ['gyms' => $gyms, 'trainingSession' => $trainingSession,'arr'=>$arr]);
+        $trainingSession->load('users');
+        $gyms = Gym::pluck('name', 'id');
+        return view('dashboard.trainingSession.edit', ['gyms' => $gyms, 'trainingSession' => $trainingSession]);
     }
 
 
-    public function update(TrainingSessionRequest $request, TrainingSession $trainingSession)
+    public function update(Request $request, TrainingSession $trainingSession)
     {
+
         $trainingSession->update($request->validated());
         return to_route('dashboard.training-sessions.index');
     }
+
+
 
     public function destroy(TrainingSession $trainingSession)
     {
