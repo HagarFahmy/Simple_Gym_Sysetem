@@ -34,7 +34,7 @@ class CityManagersDataTable extends DataTable
     public function query(Admin $model)
     {
         $model= Admin::role('City Manager')->with('city');
-        return $this->applyScopes($model);
+        return $model;
     }
 
     /**
@@ -64,11 +64,7 @@ class CityManagersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(100)
-            //       ->addClass('text-center'),
+            Column::make('city.name')->title('City Name'),
             
         ];
     }

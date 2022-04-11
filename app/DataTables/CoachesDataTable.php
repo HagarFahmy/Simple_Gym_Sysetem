@@ -17,20 +17,14 @@ class CoachesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.coach.action');
+            ->addColumn('action', 'dashboard.coach.action')
+            ;
     }
 
    
     public function query(Coach $model)
     {
-        // $model= Admin::role('City Manager')->with('city');
-        // return $this->applyScopes($model);
-        
-        $model = Coach::with(['gym']);
-       
-        return $this->applyScopes($model);
-        
-      // return $model->newQuery();
+        return $model->with('gym');
     }
 
     public function html()
@@ -44,10 +38,6 @@ class CoachesDataTable extends DataTable
                     ->addAction(['width' => '200px']);
     }
 
-    // ->columns([
-    //     {data: 'id', name: 'posts.id'},
-    //      {data: 'name', name: 'users.name'},
-    //     ])
 
     /**
      * Get columns.
@@ -61,12 +51,7 @@ class CoachesDataTable extends DataTable
             
             Column::make('id'),
             Column::make('name'),
-            Column::make('gym_id'),
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(150)
-            //       ->addClass('text-center'),
+            Column::make('gym.name')->title('Gym Name'),
             
         ];    
     }

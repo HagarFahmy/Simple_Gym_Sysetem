@@ -9,6 +9,7 @@ class Gym extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    const LOCATION = 'gyms';
     protected $fillable = [
         'cover_image',
         'name',
@@ -45,4 +46,10 @@ class Gym extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function getImagePathAttribute()
+    {
+        return asset('storage/images/' . self::LOCATION . '/' . $this->cover_image);
+    }
+    
 }

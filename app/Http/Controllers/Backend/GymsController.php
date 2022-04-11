@@ -32,17 +32,17 @@ class GymsController extends CommonController
     {
         $data = $request->except(['cover_image']);
         $data['cover_image'] = $this->storeImage($request->cover_image, 'gyms');
-        $city_manager= Admin::where('id',$data['city_manager_id'])->first();
+        $city_manager= Admin::find($data['city_manager_id']);
         $data['city_id']=$city_manager->city_id;
-       Gym::create($data);
-       return to_route('dashboard.gyms.index');
+        Gym::create($data);
+        return to_route('dashboard.gyms.index');
     }
 
    
     public function show(Gym $gym)
     {
-        $city_manager= Admin::where('id',$gym->city_manager_id)->first();
-        return view('dashboard.gyms.show',['gym'=>$gym,'city_manager'=>$city_manager]);
+
+        return view('dashboard.gyms.show',['gym'=>$gym]);
     }
 
     public function edit(Gym $gym)
@@ -62,6 +62,7 @@ class GymsController extends CommonController
 
     public function destroy(Gym $gym)
     {
+    if($gym->training_sessions->count()==0)
         $gym->delete();
         return to_route('dashboard.gyms.index');
     }

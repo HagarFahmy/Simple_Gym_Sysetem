@@ -45,7 +45,11 @@
                         @endif
                     </div>
                 </div>
-
+                @if($errors->any())
+                @foreach($errors->all() as $error)
+                <p>{{ $error}}</p>
+                @endforeach
+            @endif
                 <div class="form-group">
                     <label for="coach" class="col-sm-2 control-label">Coaches</label>
 

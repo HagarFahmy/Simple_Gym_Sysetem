@@ -23,8 +23,8 @@ class TrainingSessionsController extends CommonController
 
     public function create()
     {
-        $gyms= Gym::all()->pluck('name','id');
-        $coaches = Coach::all()->pluck('name', 'id');
+        $gyms= Gym::pluck('name','id');
+        $coaches = Coach::pluck('name', 'id');
         return view('dashboard.trainingSession.create', ['coaches' => $coaches,'gyms'=>$gyms]);
     }
 
@@ -45,9 +45,8 @@ class TrainingSessionsController extends CommonController
     }
 
 
-    public function update(Request $request, TrainingSession $trainingSession)
+    public function update(TrainingSessionRequest $request, TrainingSession $trainingSession)
     {
-
         $trainingSession->update($request->validated());
         return to_route('dashboard.training-sessions.index');
     }
