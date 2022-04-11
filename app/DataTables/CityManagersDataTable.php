@@ -64,6 +64,8 @@ class CityManagersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
+            Column::make('city.name')->title('city name'),
+
             // Column::computed('action')
             //       ->exportable(false)
             //       ->printable(false)

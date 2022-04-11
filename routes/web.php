@@ -9,6 +9,9 @@ use \App\Http\Controllers\Backend\CitiesController;
 use App\Http\Controllers\Backend\GymsController;
 use \App\Http\Controllers\Backend\TrainingSessionsController;
 use \App\Http\Controllers\Backend\UserController;
+use \App\Http\Controllers\Backend\AttendenceController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,10 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::resource('training-sessions',TrainingSessionsController::class);
     Route::Resource('users',UserController::class);
     Route::Resource('gyms',GymsController::class);
+    Route::Resource('attendance',AttendenceController::class);
+
 
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
+
+//Route::get('attendence',[ AttendenceController::class ,'index'])->name('attendence.index');;

@@ -90,9 +90,9 @@
                     </a>
                 </li>
             @endcan
-            @can(['list-attendance', 'create-attendance'], 'admin')
+            @can(['list-attendance'], 'admin')
                 <li>
-                    <a href="../widgets.html">
+                    <a href="{{route('dashboard.attendance.index')}}">
                         <i class="fa-solid fa-calendar-days"></i> <span>Attendance</span>
                         <span class="pull-right-container">
             </span>
