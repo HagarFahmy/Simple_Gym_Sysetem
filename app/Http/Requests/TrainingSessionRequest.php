@@ -37,20 +37,23 @@ class TrainingSessionRequest extends FormRequest
                 $this->routeIs('dashboard.training-sessions.store') ? 'required' : 'nullable'
             ,'date',Rule::unique('training_sessions')->ignore($this->finishes_at,'finishes_at'),'after:starts_at'],
             'gym_id' => ['required','int'],
+            'coach_id'=>['int',$this->routeIs('dashboard.training-sessions.store') ? 'required' : 'nullable'],
             'count' => 'numeric|max:0',
         ];
     }
 
     private function count() :int
     {
-        $start = new Carbon($this->starts_at);
-        $end = new Carbon($this->finishes_at);
+        $start =  Carbon::parse($this->starts_at)->toDateString();
+        $end =  Carbon::parse($this->finishes_at)->toDateString();
+       $trainingSessions = TrainingSession::
+       whereBetween('starts_at', [$start, $end])
+       ->orWhereBetween('finishes_at',[$start, $end])->get();
 
-       $count = TrainingSession::whereBetween('starts_at', [$start, $end])
-       ->orWhereBetween('finishes_at',[$start, $end])
-       ->count();
-
-       return $count;
+       if(!$this->routeIs('dashboard.training-sessions.store')) {
+         return $trainingSessions->whereNotIn('id', [request()->route('training_session')->id])->count();
+       }
+       return $trainingSessions->count();
     }
 
     protected function prepareForValidation()

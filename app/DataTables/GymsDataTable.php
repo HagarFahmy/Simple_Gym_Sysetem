@@ -1,12 +1,9 @@
 <?php
 
 namespace App\DataTables;
-
 use App\Models\Gym;
-use Yajra\DataTables\Html\Button;
+use Carbon\Carbon;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
 class GymsDataTable extends DataTable
@@ -21,7 +18,11 @@ class GymsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.gyms.action');
+            ->addColumn('action', 'dashboard.gyms.action')
+            ->editColumn('created_at', function($record) {
+                $date = new Carbon($record->created_at);
+                return $date->format('d-m-Y');
+            });
     }
 
     /**

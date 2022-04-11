@@ -63,12 +63,7 @@ class TrainingSessionDataTable extends DataTable
             Column::make('name'),
             Column::make('starts_at'),
             Column::make('finishes_at'),
-            Column::make('gym.name')->title('TEST'),
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
+            Column::make('gym.name')->title('Gym Name'),
             
         ];
     }

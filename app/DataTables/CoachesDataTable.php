@@ -17,7 +17,8 @@ class CoachesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.coach.action');
+            ->addColumn('action', 'dashboard.coach.action')
+            ;
     }
 
    
@@ -48,7 +49,7 @@ class CoachesDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             //Column::make('gym_id'),
-            Column::make('gym.name')->title('Gym name'),
+            Column::make('gym.name')->title('Gym Name'),
             
             
         ];    

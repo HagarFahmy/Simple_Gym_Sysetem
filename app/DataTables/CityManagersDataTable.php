@@ -34,7 +34,7 @@ class CityManagersDataTable extends DataTable
     public function query(Admin $model)
     {
         $model= Admin::role('City Manager')->with('city');
-        return $this->applyScopes($model);
+        return $model;
     }
 
     /**
