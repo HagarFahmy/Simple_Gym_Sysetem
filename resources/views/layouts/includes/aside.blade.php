@@ -13,7 +13,7 @@
     <ul class="sidebar-menu" data-widget="tree">
             <li>
                 <a href="{{ url('dashboard/home') }}">
-                    <i class="fa fa-th"></i> <span>Dashboard</span>
+                    <i class="fa-solid fa-gauge-high"></i> <span>Dashboard</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
