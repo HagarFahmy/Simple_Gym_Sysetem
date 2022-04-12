@@ -25,24 +25,34 @@ class GymSeeder extends Seeder
                 'name'            => 'gym_1',
                 'city_id'         => '1',
                 'created_at'      => now(),
-                'city_manager_id' => '3',
+                // 'city_manager_id' => '2',
 
             ],
             [
                 'id'              => 2,
                 'cover_image'     => 'default.jpg',
                 'name'            => 'gym_2',
-                'city_id'         => '2',
+                'city_id'         => '1',
                 'created_at'      => now(),
-                'city_manager_id' => '3',
+                // 'city_manager_id' => '2',
             ],
             [
                 'id'              => 3,
                 'cover_image'     => 'default.jpg',
                 'name'            => 'gym_3',
-                'city_id'         => '1',
+                'city_id'         => '2',
                 'created_at'      => now(),
-                'city_manager_id' => '3',
+                // 'city_manager_id' => '3',
+
+            ],
+
+            [
+                'id'              => 4,
+                'cover_image'     => 'default.jpg',
+                'name'            => 'gym_4',
+                'city_id'         => '2',
+                'created_at'      => now(),
+                // 'city_manager_id' => '3',
 
             ],
           

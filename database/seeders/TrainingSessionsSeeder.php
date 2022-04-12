@@ -52,7 +52,17 @@ class TrainingSessionsSeeder extends Seeder
                 'name'     => 'session_4',
                 'starts_at'            => '2022-04-10 04:00:00',
                 'finishes_at'         => '2022-04-10 07:00:00',
-                'gym_id' => '1',
+                'gym_id' => '3',
+                'created_at'      => now(),
+
+            ],
+
+            [
+                'id'              => 5,
+                'name'     => 'session_5',
+                'starts_at'            => '2022-04-10 04:00:00',
+                'finishes_at'         => '2022-04-10 07:00:00',
+                'gym_id' => '4',
                 'created_at'      => now(),
 
             ],
