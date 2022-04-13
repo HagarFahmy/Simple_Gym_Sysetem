@@ -1,11 +1,11 @@
 <div id="buttonaction">
-@can('update-', 'admin')
+@can('update-trainingSession', 'admin')
     <a class="btn btn-sm btn-info " href="{{ route('dashboard.training-sessions.edit', $id) }}">Edit</a>
 @endcan
-<!-- @can('list-', 'admin')
+@can('list-trainingSession', 'admin')
     <a class="btn btn-sm btn-info " href="{{ route('dashboard.training-sessions.show', $id) }}">show</a>
-@endcan -->
-@can('destroy-', 'admin')
+@endcan 
+@can('delete-trainingSession', 'admin')
     <form action="{{ route('dashboard.training-sessions.destroy', $id) }}" method="POST">
         @csrf
         @method('delete')

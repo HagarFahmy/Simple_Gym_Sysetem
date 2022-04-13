@@ -21,12 +21,7 @@ class CityManagerController extends CommonController
     {
         $this->modelDatatable = $modelDatatable;
     }
-//    public function index()
-//    {
-//        $cityManagers= Admin::role('City Manager')->with('city')->get();
-//        return view('dashboard.cityManager.index',['cityManagers'=>$cityManagers]);
 
-//    }
    public function create()
    {
         $cities = City::doesnthave('cityManager')->pluck('name', 'id');

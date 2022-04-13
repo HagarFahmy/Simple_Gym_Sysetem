@@ -5,6 +5,7 @@ use App\Models\Gym;
 use Carbon\Carbon;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
 
 class GymsDataTable extends DataTable
 {
@@ -33,7 +34,14 @@ class GymsDataTable extends DataTable
      */
     public function query(Gym $model)
     {
-        return $model->with('city_manager');
+    
+        if(auth()->user()->hasRole('Super Admin')) {
+            return $model->with('city','city_manager');
+        }
+
+        if(auth()->user()->hasRole('City Manager')) {
+            return $model->with('city')->where('city_manager_id', Auth::id());
+        } 
     }
 
     /**
@@ -66,7 +74,8 @@ class GymsDataTable extends DataTable
         ];
 
         if(auth()->user()->hasRole('Super Admin')) {
-            $columns[] = Column::make('city_manager.name')->title('Gym Manager');
+            $columns[] = Column::make('city_manager.name')->title('city Manager');
+            $columns[] = Column::make('city.name')->title('city');
         }
         return $columns;
     }
