@@ -8,6 +8,7 @@
     <h1 style="color: white">{{$permissionGroup}}</h1>
 
     <div class="box">
+    
         <div class="box-header with-border">
             <div class="box-tools">
                 @can('create-' . $permissionGroup, 'admin')

@@ -17,12 +17,12 @@ class Revenue extends Model
         return $this->belongsTo(Gym::class);
     }
 
-    public function users() {
-        return $this->hasMany(User::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
-    public function training_packages() {
-        return $this->hasMany(TrainingPackage::class, 'id', 'package_id');
+    public function package() {
+        return $this->belongsTo(TrainingPackage::class);
     }
 }
 	

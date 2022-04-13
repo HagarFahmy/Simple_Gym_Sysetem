@@ -108,9 +108,9 @@
                 </a>
             </li>
         @endcan
-        @can(['list-revenue', 'create-revenue'], 'admin')
+        @can(['list-revenue'], 'admin')
             <li>
-                <a href="../widgets.html">
+                <a href="{{ route('dashboard.revenue.index') }}">
                     <i class="fa-solid fa-sack-dollar"></i> <span>Revenue</span>
                     <span class="pull-right-container">
                     </span>

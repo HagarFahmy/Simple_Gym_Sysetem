@@ -23,7 +23,7 @@ class CitySeeder extends Seeder
     $cities = [
         [
             'id'              => 1,
-            'name'            => 'Cairp',
+            'name'            => 'Cairo',
         ],
         [
             'id'              => 2,
