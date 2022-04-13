@@ -2,10 +2,13 @@
 
 namespace App\DataTables;
 use App\Models\Revenue;
+use App\Models\Gym;
+use App\Models\Admin;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
 
 class RevenueDataTable extends DataTable
 {
@@ -18,7 +21,17 @@ class RevenueDataTable extends DataTable
 
     public function query(Revenue $model)
     {
+        if(auth()->user()->hasRole('Super Admin')) {
         return $model->with('user','gym','package','gym.city');
+        }
+
+        if(auth()->user()->hasRole('City Manager')) {
+            return $model->with('user','gym','package')->whereIn('gym_id', Gym::where('city_manager_id', Auth::id())->get()->pluck('id'));
+            }
+
+         if(auth()->user()->hasRole('Gym Manager')) {
+            return $model->with('user','gym','package')->where('gym_id', Admin::where('id', Auth::user()->id)->get()->first()->gym_id);
+            }
          
     }
 
@@ -28,19 +41,13 @@ class RevenueDataTable extends DataTable
                     ->setTableId('revenuedatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1);
+                    ->dom('Bfrtip');
+                    //->orderBy(1);
                     
     }
 
     protected function getColumns()
     {
-
-        // return [
-
-        //     Column::make('id'),          
-        
-        // ];
         $columns = [
             Column::make('id'),
             Column::make('user.name')->title('user name'),

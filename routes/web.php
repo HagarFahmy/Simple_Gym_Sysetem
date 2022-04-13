@@ -52,6 +52,7 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::post('/single-charge',[BuyPackageController::class, 'singleCharge'])->name('single.charge');
 
     Route::Resource('revenue',RevenueController::class);
+    Route::get('/total-revenue', [RevenueController::class, 'totalRevenue'])->name('revenue.total');
 
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });

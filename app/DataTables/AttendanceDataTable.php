@@ -3,11 +3,17 @@
 namespace App\DataTables;
 
 use App\Models\Attendance;
+use App\Models\Gym;
+use App\Models\Admin;
+use App\Models\TrainingSession;
+
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
+
 
 class AttendanceDataTable extends DataTable
 {
@@ -21,8 +27,6 @@ class AttendanceDataTable extends DataTable
     public function query(Attendance $model)
     {
         return $model->with('user','training_session' ,'training_session.gym' , 'training_session.gym.city');
-
-       // training_session
     }
 
     public function html()
