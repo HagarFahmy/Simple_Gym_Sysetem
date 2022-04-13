@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('package_id')->constrained('training_packages')->onDelete ('cascade');
             $table->double('amount_paid');
             $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('purchased_at')->useCurrent();
             $table->softDeletes();
         });
     }

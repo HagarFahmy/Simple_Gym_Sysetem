@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('password');
             
             $table->foreignId('gym_id')->constrained('gyms')->onDelete ('cascade');
+            $table->string('stripe_id')->nullable()->index();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

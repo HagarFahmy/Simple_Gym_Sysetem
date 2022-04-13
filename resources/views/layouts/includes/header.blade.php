@@ -4,6 +4,7 @@
     <span class="logo-mini"><b>GOL</b>DEN</span>
     <!-- logo for regular state and mobile devices -->
     <span class="logo-lg"><b>GOLDEN</b>GYM</span>
+
 </a>
 <!-- Header Navbar: style can be found in header.less -->
 <nav class="navbar navbar-static-top">

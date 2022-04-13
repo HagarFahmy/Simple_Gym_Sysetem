@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\GymsController;
 use \App\Http\Controllers\Backend\TrainingSessionsController;
 use \App\Http\Controllers\Backend\UserController;
 use \App\Http\Controllers\Backend\AttendenceController;
+use \App\Http\Controllers\Backend\BuyPackageController;
+
 
 
 
@@ -43,6 +45,11 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::Resource('users',UserController::class);
     Route::Resource('gyms',GymsController::class);
     Route::Resource('attendance',AttendenceController::class);
+    // Route::Resource('buy-package',BuyPackageController::class);
+    Route::get('/create', [BuyPackageController::class, 'create'])->name('buy-package.create');
+    Route::post('/store', [BuyPackageController::class, 'store'])->name('buy-package.store');
+    Route::get('/stripe', [BuyPackageController::class, 'stripe'])->name('buy-package.stripe');
+    Route::post('/single-charge',[BuyPackageController::class, 'singleCharge'])->name('single.charge');
 
 
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
