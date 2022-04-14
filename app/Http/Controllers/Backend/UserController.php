@@ -58,9 +58,9 @@ class UserController extends CommonController
 
    public function destroy(User $user)
    {
-       $this->deleteImage($user->profile_image, 'users');
-       $user->delete();
-       return to_route('dashboard.users.index');
+    $this->deleteImage($user->profile_image, 'users');
+    $user->delete();
+    return response()->json(['success' => true]);
 
    }
 
