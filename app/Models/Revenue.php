@@ -10,7 +10,7 @@ class Revenue extends Model
     use HasFactory;
     protected $table = 'package_purchase';
     protected $fillable = [
-        'amount_paid'
+        'amount_paid',
     ];
 
     public function gym() {
@@ -22,6 +22,7 @@ class Revenue extends Model
     }
 
     public function training_packages() {
-        return $this->belongsTo(TrainingPackage::class, 'user_id', 'sessions_number');
+        return $this->belongsTo(TrainingPackage::class, 'package_id','id' ,'user_id', 'sessions_number');
     }
 }
+//

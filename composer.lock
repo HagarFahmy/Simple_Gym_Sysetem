@@ -1953,6 +1953,18 @@
         },
         {
             "name": "league/flysystem",
+<<<<<<< HEAD
+            "version": "3.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "3b71cd136dc0331ee87b636b25f4ee339368c718"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3b71cd136dc0331ee87b636b25f4ee339368c718",
+                "reference": "3b71cd136dc0331ee87b636b25f4ee339368c718",
+=======
             "version": "3.0.16",
             "source": {
                 "type": "git",
@@ -1963,6 +1975,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/dea729954c596bdb6cdaecba6f73df9f3e2c4255",
                 "reference": "dea729954c596bdb6cdaecba6f73df9f3e2c4255",
+>>>>>>> refs/remotes/origin/main
                 "shasum": ""
             },
             "require": {
@@ -2023,7 +2036,11 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
+<<<<<<< HEAD
+                "source": "https://github.com/thephpleague/flysystem/tree/3.0.15"
+=======
                 "source": "https://github.com/thephpleague/flysystem/tree/3.0.16"
+>>>>>>> refs/remotes/origin/main
             },
             "funding": [
                 {
@@ -2039,7 +2056,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
+            "time": "2022-04-08T18:36:06+00:00"
+=======
             "time": "2022-04-11T13:32:22+00:00"
+>>>>>>> refs/remotes/origin/main
         },
         {
             "name": "league/fractal",
@@ -2422,6 +2443,17 @@
             "time": "2021-07-01T19:01:15+00:00"
         },
         {
+<<<<<<< HEAD
+            "name": "monolog/monolog",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "4192345e260f1d51b365536199744b987e160edc"
+            },
+            "dist": {
+                "type": "zip",
+=======
             "name": "moneyphp/money",
             "version": "v4.0.3",
             "source": {
@@ -2520,6 +2552,7 @@
             },
             "dist": {
                 "type": "zip",
+>>>>>>> refs/remotes/origin/main
                 "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4192345e260f1d51b365536199744b987e160edc",
                 "reference": "4192345e260f1d51b365536199744b987e160edc",
                 "shasum": ""
@@ -9703,5 +9736,5 @@
         "php": "^8.0.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

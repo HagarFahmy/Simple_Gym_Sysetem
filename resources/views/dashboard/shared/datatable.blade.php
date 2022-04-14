@@ -9,7 +9,7 @@
     <div class="box">
 
         @php
-            $disableCreate = ['attendance'];
+            $disableCreate = ['attendance' , 'revenue'];
         @endphp
 
         <div class="box-header with-border">
