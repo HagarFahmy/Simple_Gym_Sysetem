@@ -10,6 +10,7 @@ use App\Models\TrainingSession;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Alert ;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class TrainingSessionsController extends CommonController
 {
@@ -37,6 +38,9 @@ class TrainingSessionsController extends CommonController
         return to_route('dashboard.training-sessions.index');
     }
 
+    public function show(TrainingSession $trainingSession){
+        return view('dashboard.trainingSession.show',['trainingSession' => $trainingSession]);
+    }
 
     public function edit(TrainingSession $trainingSession)
     {
@@ -64,8 +68,8 @@ class TrainingSessionsController extends CommonController
         }
         else{
             Alert::error("Can't delete cause there are users attend this seesion");
-            return to_route('dashboard.training-sessions.index');
         }
+        return to_route('dashboard.training-sessions.index');
         
     }
 }

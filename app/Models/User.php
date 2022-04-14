@@ -19,6 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    const LOCATION = 'users';
     protected $fillable = [
         'name',
         'email',
@@ -57,5 +58,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Gym::class);
         
+    }
+     public function getImagePathAttribute()
+    {
+        return asset('storage/images/' . self::LOCATION . '/' . $this->profile_image);
+    }
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
     }
 }

@@ -4,7 +4,7 @@
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Create City Manager</h3>
+            <h3 class="box-title">Create User</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -36,7 +36,6 @@
 
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">Password</label>
-
                     <div class="col-sm-10">
                         <input type="password" class="form-control"  id="password" placeholder="Password" name="password">
                         @if($errors->has('password'))

@@ -37,6 +37,22 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
         display: flex;
         justify-content: space-around;
      }
+     #show h3{
+          color: red;
+          font-weight: 600;
+     }
+     #show img{
+          width: 150px;
+          margin: 10px auto;
+     }
+     #show{
+          font-size: larger;
+          text-align: center;
+     }
+     #show span{
+          font-weight: 700;
+          padding-right: 10px;
+     }
 
 
 </style>
