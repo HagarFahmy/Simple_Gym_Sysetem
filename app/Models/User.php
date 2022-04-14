@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use  Billable , HasApiTokens, HasFactory, Notifiable, HasRoles;
 
@@ -57,7 +57,7 @@ class User extends Authenticatable
     public function gym()
     {
         return $this->belongsTo(Gym::class);
-        
+
     }
      public function getImagePathAttribute()
     {
