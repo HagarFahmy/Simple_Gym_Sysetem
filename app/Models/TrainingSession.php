@@ -17,18 +17,22 @@ class TrainingSession extends Model
         'gym_id'
     ];
 
-    public function users() // done
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'user_training_session', 'training_session_id', 'user_id');
+        return $this->belongsToMany(User::class, 'attendances_sessions', 'user_training_session', 'training_session_id', 'user_id');
     }
 
-    public function coaches() // done
+    public function coaches()
     {
         return $this->belongsToMany(Coach::class, 'coach_training_session', 'training_session_id', 'coach_id');
     }
 
-    public function gym() // done
+    public function gym()
     {
         return $this->belongsTo(Gym::class);
+    }
+
+    public function attendances_sessions(){
+        return $this->hasMany(Attendance::class);
     }
 }

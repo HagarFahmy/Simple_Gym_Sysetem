@@ -51,7 +51,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function training_sessions() // done
     {
-        return $this->belongsToMany(TrainingSession::class, 'user_training_session', 'training_session_id', 'user_id');
+        return $this->belongsToMany(TrainingSession::class, 'attendances_sessions', 'user_training_session', 'training_session_id', 'user_id');
+    }
+
+    public function attendances_sessions()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     public function gym()
