@@ -3,12 +3,14 @@
 namespace App\DataTables;
 
 use App\Models\TrainingSession;
+use App\Models\Gym;
+use App\Models\Admin;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
-
+use Illuminate\Support\Facades\Auth;
 class TrainingSessionDataTable extends DataTable
 {
     /**
@@ -32,7 +34,15 @@ class TrainingSessionDataTable extends DataTable
      */
     public function query(TrainingSession $model)
     {
-        return $model->with('gym');
+        if(auth()->user()->hasRole('Super Admin')) {
+            return $model->with('gym');
+        }
+         else if(auth()->user()->hasRole('City Manager')) {
+            return $model->with('gym')->whereIn('gym_id', Gym::where('city_manager_id', Auth::id())->get()->pluck('id'));
+        } else if(auth()->user()->hasRole('Gym Manager')) {
+            return $model->with('gym')->where('gym_id', Admin::where('id', Auth::user()->id)->get()->first()->gym_id);
+        }
+        
     }
 
     /**
