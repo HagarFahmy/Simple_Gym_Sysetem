@@ -58,6 +58,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::controller(UserController::class)->middleware(['auth:sanctum','verified'])->group(function(){
     Route::get('/training-sessions',[UserController::class,'remainingTrainingSessions']);
+    Route::get('/sessions-history',[UserController::class,'getAttendanceHistory']);
 });
 
 
