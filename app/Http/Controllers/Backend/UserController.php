@@ -32,6 +32,7 @@ class UserController extends CommonController
    {
        $data = $request->except(['profile_image']);
        $data['profile_image'] = $this->storeImage($request->profile_image, 'users');
+       
        $user = User::create($data);
        return to_route('dashboard.users.index');
    }

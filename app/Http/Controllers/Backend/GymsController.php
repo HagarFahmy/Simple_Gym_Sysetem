@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Models\City;
 use App\Models\Gym;
 use Illuminate\Http\Request;
+use Alert;
 
 class GymsController extends CommonController
 {
@@ -63,7 +64,15 @@ class GymsController extends CommonController
     public function destroy(Gym $gym)
     {
     if($gym->training_sessions->count()==0)
+    {
         $gym->delete();
+    }
+    else{
+        
+        Alert::error("Can't delete gym cause it have training session");
         return to_route('dashboard.gyms.index');
+    }
+        
+        
     }
 }

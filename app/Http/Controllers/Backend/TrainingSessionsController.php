@@ -9,6 +9,7 @@ use App\Models\Gym;
 use App\Models\TrainingSession;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Alert ;
 
 class TrainingSessionsController extends CommonController
 {
@@ -57,7 +58,13 @@ class TrainingSessionsController extends CommonController
     {
         $arr=TrainingSession::doesntHave('users')->get();
         if ($arr->contains('id',$trainingSession->id))
-        $trainingSession->delete();
-        return to_route('dashboard.training-sessions.index');
+        {
+            $trainingSession->delete();
+        }
+        else{
+            Alert::error("Can't delete cause there are users attend this seesion");
+            return to_route('dashboard.training-sessions.index');
+        }
+        
     }
 }
