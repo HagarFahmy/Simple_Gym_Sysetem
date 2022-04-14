@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Gym extends Model
 {
     use HasFactory;
-    public $timestamps=false;
+    public $timestamps = false;
     const LOCATION = 'gyms';
     protected $fillable = [
         'cover_image',
@@ -17,17 +17,17 @@ class Gym extends Model
         'city_manager_id',
     ];
 
-    public function coaches() // done
+    public function coaches()
     {
         return $this->hasMany(Coach::class);
     }
-    
-    public function gym_managers() // done
+
+    public function gym_managers()
     {
         return $this->hasMany(Admin::class);
     }
 
-    public function city_manager() // done
+    public function city_manager()
     {
         return $this->belongsTo(Admin::class);
     }
@@ -37,12 +37,12 @@ class Gym extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function training_sessions() // done
+    public function training_sessions()
     {
         return $this->hasMany(TrainingSession::class);
     }
 
-    public function user() // done
+    public function user()
     {
         return $this->hasMany(User::class);
     }
@@ -51,5 +51,4 @@ class Gym extends Model
     {
         return asset('storage/images/' . self::LOCATION . '/' . $this->cover_image);
     }
-    
 }

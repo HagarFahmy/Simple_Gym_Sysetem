@@ -13,16 +13,18 @@ class Revenue extends Model
         'amount_paid',
     ];
 
-    public function gym() {
+    public function gym()
+    {
         return $this->belongsTo(Gym::class);
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function training_packages() {
-        return $this->belongsTo(TrainingPackage::class, 'package_id','id' ,'user_id', 'sessions_number');
+    public function training_packages()
+    {
+        return $this->hasMany(TrainingPackage::class, 'id', 'user_id', 'sessions_number');
     }
 }
-//
