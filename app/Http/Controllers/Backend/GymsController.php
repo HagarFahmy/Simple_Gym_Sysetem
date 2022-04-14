@@ -66,11 +66,14 @@ class GymsController extends CommonController
     if($gym->training_sessions->count()==0)
     {
         $gym->delete();
+        return response()->json(['success' => true]);
     }
     else{
-        
         Alert::error("Can't delete gym cause it have training session");
         return to_route('dashboard.gyms.index');
+
+        //return response()->json(['error' => true]);
+        
     }
         
         

@@ -60,6 +60,7 @@ class TrainingSessionsController extends CommonController
         if ($arr->contains('id',$trainingSession->id))
         {
             $trainingSession->delete();
+            return response()->json(['success' => true]);
         }
         else{
             Alert::error("Can't delete cause there are users attend this seesion");

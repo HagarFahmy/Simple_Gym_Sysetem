@@ -60,7 +60,7 @@ class CityManagerController extends CommonController
    {
        $this->deleteImage($cityManager->image, 'admins');
        $cityManager->delete();
-       return to_route('dashboard.city-managers.index');
+       return response()->json(['success' => true]);
 
    }
 

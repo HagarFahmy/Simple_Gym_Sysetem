@@ -6,10 +6,8 @@
     <a class="btn btn-sm btn-info " href="{{ route('dashboard.training-packages.show', $id) }}">show</a>
     @endcan
     @can('destroy-', 'admin')
-        <form action="{{ route('dashboard.training-packages.destroy', $id) }}" method="POST">
-            @csrf
-            @method('delete')
-            <button class="btn btn-sm btn-danger ">Delete</button>
-        </form>
-    @endcan
+    <a data-url="{{ route('dashboard.training-packages.destroy', $id) }}" class="btn btn-danger btn-outline-danger py-0" style="font-size: 0.8em;" id="deleteRecord" data-id="{{ $id }}">
+        Delete
+    </a>
+@endcan
 </div>
