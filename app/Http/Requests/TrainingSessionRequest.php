@@ -44,11 +44,12 @@ class TrainingSessionRequest extends FormRequest
 
     private function count() :int
     {
-        $start =  Carbon::parse($this->starts_at)->toDateString();
-        $end =  Carbon::parse($this->finishes_at)->toDateString();
+        $start =  Carbon::parse($this->starts_at);
+        $end =  Carbon::parse($this->finishes_at);
        $trainingSessions = TrainingSession::
        whereBetween('starts_at', [$start, $end])
        ->orWhereBetween('finishes_at',[$start, $end])->get();
+
 
        if(!$this->routeIs('dashboard.training-sessions.store')) {
          return $trainingSessions->whereNotIn('id', [request()->route('training_session')->id])->count();
