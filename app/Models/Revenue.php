@@ -21,8 +21,7 @@ class Revenue extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function package() {
-        return $this->belongsTo(TrainingPackage::class);
+    public function training_packages() {
+        return $this->belongsTo(TrainingPackage::class, 'user_id', 'sessions_number');
     }
 }
-	

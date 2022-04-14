@@ -22,11 +22,12 @@ return new class extends Migration
             $table->string('profile_image')->default('default.jpg');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            
+
             $table->foreignId('gym_id')->constrained('gyms')->onDelete ('cascade');
             $table->string('stripe_id')->nullable()->index();
             $table->rememberToken();
             $table->timestamps();
+            $table->date('last_login_at')->nullable();
             $table->softDeletes();
         });
     }
