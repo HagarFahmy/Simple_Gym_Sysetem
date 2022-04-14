@@ -12,7 +12,7 @@
             @csrf
             <div class="box-body">
                 <div class="form-group">
-                    <label for="name" class="col-sm-2 control-label">Email</label>
+                    <label for="name" class="col-sm-2 control-label">City Name</label>
 
                     <div class="col-sm-10">
                         <input type="text" class="form-control"  value="{{ old('name') }}" id="name" placeholder="Name" name="name">

@@ -34,7 +34,7 @@ class CreateAdminsTable extends Migration
 
             // city manager 
             $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete ('cascade');
 
             // gym manager 
             $table->unsignedBigInteger('gym_id')->nullable();

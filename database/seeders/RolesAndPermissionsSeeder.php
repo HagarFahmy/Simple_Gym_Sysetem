@@ -32,31 +32,49 @@ class RolesAndPermissionsSeeder extends Seeder
 
 
         // Super admin role
-        $role = Role::create(['name' => 'Super Admin', 'guard_name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
+        $superAdminPremissionsModules = ['admins', 'roles', 'permissions', 'gymManagers', 'cityManagers', 
+        'users', 'cities', 'gyms', 'trainingPackages', 'trainingSession','coaches', 'buyPackage'];
+        $superAdminPremissions = [];
+        foreach ($superAdminPremissionsModules as $key => $value) {
+            foreach ($actions as $action) {
+                $superAdminPremissions[] = $action . '-' . $value;
+            }
+        }
+        $superAdminPremissions[]= 'list-attendance';
+        $superAdminPremissions[]= 'list-revenue';
+
+        
+        $superAdmin = Role::create(['name' => 'Super Admin', 'guard_name' => 'admin']);
+        $superAdmin->givePermissionTo($superAdminPremissions);
 
 
 
         // Gym Manager Role
-        $gymManagerPremissionsModules = ['trainingSession', 'attendance', 'buyPackage', 'revenue'];
+        $gymManagerPremissionsModules = ['trainingSession', 'buyPackage'];
         $gymManagerPremissions = [];
         foreach ($gymManagerPremissionsModules as $key => $value) {
             foreach ($actions as $action) {
                 $gymManagerPremissions[] = $action . '-' . $value;
             }
         }
+        $gymManagerPremissions[]= 'list-attendance';
+        $gymManagerPremissions[]= 'list-revenue';
+
         $gymManager = Role::create(['name' => 'Gym Manager', 'guard_name' => 'admin']);
         $gymManager->givePermissionTo($gymManagerPremissions);
 
 
         // City Manager Role
-        $cityManagerPremissionsModules = ['trainingSession', 'attendance', 'buyPackage', 'revenue', 'gyms', 'gymManagers'];
+        $cityManagerPremissionsModules = ['trainingSession', 'buyPackage', 'gyms', 'gymManagers'];
         $cityManagerPremissions = [];
         foreach ($cityManagerPremissionsModules as $key => $value) {
             foreach ($actions as $action) {
                 $cityManagerPremissions[] = $action . '-' . $value;
             }
         }
+        $cityManagerPremissions[]= 'list-attendance';
+        $cityManagerPremissions[]= 'list-revenue';
+
         $cityManager = Role::create(['name' => 'City Manager', 'guard_name' => 'admin']);
         $cityManager->givePermissionTo($cityManagerPremissions);
 

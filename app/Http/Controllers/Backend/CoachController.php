@@ -62,6 +62,6 @@ class CoachController extends CommonController
     public function destroy(Coach $coach)
     {
         $coach->delete();
-        return to_route('dashboard.coaches.index');
+        return response()->json(['success' => true]);
     }
 }

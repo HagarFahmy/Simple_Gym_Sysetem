@@ -45,9 +45,29 @@
                         @endif
                     </div>
                 </div>
+                @if($errors->any())
+                @foreach($errors->all() as $error)
+                <p>{{ $error}}</p>
+                @endforeach
+            @endif
+                <div class="form-group">
+                    <label for="coach" class="col-sm-2 control-label">Coaches</label>
+
+                    <div class="col-sm-10">
+
+                        <select name="coach_id" class="form-control" id="coach">
+                            @foreach($coaches as $key => $value)
+                                <option value="{{ $key }}" {{ old('coach_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                            @endforeach
+                        </select>
+                        @if($errors->has('coach_id'))
+                            <span class="text-danger">{{ $errors->first('coach_id') }}</span>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="form-group">
-                    <label for="gym" class="col-sm-2 control-label">Gym</label>
+                    <label for="gym" class="col-sm-2 control-label">gyms</label>
 
                     <div class="col-sm-10">
 
@@ -61,7 +81,6 @@
                         @endif
                     </div>
                 </div>
-
             </div>
             <!-- /.box-body -->
             <div class="box-footer">

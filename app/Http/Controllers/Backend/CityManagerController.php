@@ -21,12 +21,7 @@ class CityManagerController extends CommonController
     {
         $this->modelDatatable = $modelDatatable;
     }
-//    public function index()
-//    {
-//        $cityManagers= Admin::role('City Manager')->with('city')->get();
-//        return view('dashboard.cityManager.index',['cityManagers'=>$cityManagers]);
 
-//    }
    public function create()
    {
         $cities = City::doesnthave('cityManager')->pluck('name', 'id');
@@ -65,7 +60,7 @@ class CityManagerController extends CommonController
    {
        $this->deleteImage($cityManager->image, 'admins');
        $cityManager->delete();
-       return to_route('dashboard.city-managers.index');
+       return response()->json(['success' => true]);
 
    }
 

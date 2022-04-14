@@ -17,7 +17,24 @@ class CitySeeder extends Seeder
     public function run()
     {
    
-    City::factory(10)->create();
+    //City::factory(10)->create();
+
+    
+    $cities = [
+        [
+            'id'              => 1,
+            'name'            => 'Cairo',
+        ],
+        [
+            'id'              => 2,
+            'name'            => 'Giza',
+        ],
+    
+      
+    ];
+
+    City::insert($cities);
+
     }
 
 
