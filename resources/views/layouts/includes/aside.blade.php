@@ -20,7 +20,7 @@
         </li>
         @can(['list-gymManagers', 'create-gymManagers'], 'admin')
             <li>
-                <a href="../widgets.html">
+                <a href="{{ route('dashboard.gym-managers.index') }}">
                     <i class="fa-regular fa-address-card nav-icon"></i> <span>Gym Managers</span>
                     <span class="pull-right-container">
                     </span>
@@ -65,7 +65,7 @@
         @endcan
         @can(['list-trainingPackages', 'create-trainingPackages'], 'admin')
             <li>
-                <a href="../widgets.html">
+                <a href="{{ route('dashboard.training-packages.index') }}">
                     <i class="fa-solid fa-box-archive"></i> <span>Training Packages</span>
                     <span class="pull-right-container">
                     </span>
@@ -113,7 +113,7 @@
 
         <li class="treeview">
             <a href="#">
-                <i class="fa-solid fa-sack-dollar"></i> 
+                <i class="fa-solid fa-sack-dollar"></i>
                 <span>Revenue</span>
                 <span class="pull-right-container">
           <i class="fa fa-angle-left pull-right"></i>
