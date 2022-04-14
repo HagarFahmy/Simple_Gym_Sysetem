@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Notifications\Greetings;
 use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
+// use Illuminate\Support\Facades\Auth;
 
 class AuthController extends BaseController
 {
@@ -104,8 +105,7 @@ class AuthController extends BaseController
 
     public function update(Request $request)
     {
-        $user = Auth()->user();
-
+        $user = Auth()->user(); // it should be $user = Auth::id();
         $validator = Validator::make($request->all(), [
             'name' => 'nullable',
             'email' => 'nullable|string|unique:users,email,' . $user->id,
