@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminAuthController;
+use App\Http\Controllers\Backend\TrainingPackagesController;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Backend\CityManagerController;
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::Resource('coaches',CoachController::class);
     Route::resource('cities',CitiesController::class);
     Route::resource('training-sessions',TrainingSessionsController::class);
+    Route::resource('training-packages', TrainingPackagesController::class);
     Route::Resource('users',UserController::class);
     Route::Resource('gyms',GymsController::class);
     Route::Resource('attendance',AttendenceController::class);

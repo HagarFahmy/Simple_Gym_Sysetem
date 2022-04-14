@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrainingPackage extends Model
 {
-    use HasFactory;
+    //use HasFactory;
     public $timestamps = false;
     protected $fillable = [
         'name',
@@ -15,5 +15,5 @@ class TrainingPackage extends Model
         'sessions_number'
     ];
 
-    
+
 }
