@@ -13,7 +13,7 @@ use Carbon\Carbon;
 
 class AuthController extends BaseController
 {
-    use AuthTrait ;
+    use AuthTrait;
 
     public function register(Request $request)
     {
@@ -87,7 +87,7 @@ class AuthController extends BaseController
         $user = User::where('email', $input['email'])->first();
 
         // Checking the cardinals
-        if(!$user || $user->password != bcrypt($input['password'])){
+        if (!$user || $user->password != bcrypt($input['password'])) {
             $success['token'] =  $user->createToken('justAToken')->plainTextToken;
             $success['name'] =  $user->name;
 
@@ -97,9 +97,8 @@ class AuthController extends BaseController
             $user->save();
 
             return $this->sendResponse($success, 'User login successfully.');
-        }
-        else{
-            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized you cant']);
+        } else {
+            return $this->sendError('Unauthorized.', ['error' => 'Unauthorized you cant']);
         }
     }
 
@@ -107,7 +106,7 @@ class AuthController extends BaseController
     {
         $user = Auth()->user();
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'name' => 'nullable',
             'email' => 'nullable|string|unique:users,email,' . $user->id,
             'gender' => 'nullable',
@@ -116,21 +115,22 @@ class AuthController extends BaseController
             'password' => 'nullable|min:6',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Validation Error.', $validator->errors());
         }
 
-            $user->name = $request->name ? $request->name : $user->name;
-            $user->email = $request->email ? $request->email : $user->email;
-            $user->gender = $request->gender ? $request->gender : $user->gender;
-            $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
-            $user->password = $request->password ? $request->bcrypt($request->password) : $user->password;
-            $user->profile_image = $request->profile_image;
+        $user->name = $request->name ? $request->name : $user->name;
+        $user->email = $request->email ? $request->email : $user->email;
+        $user->gender = $request->gender ? $request->gender : $user->gender;
+        $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
+        $user->password = $request->password ? $request->bcrypt($request->password) : $user->password;
+        $user->profile_image = $request->profile_image;
+        try {
             $user->save();
+        } catch (\Exception $e) {
+            return $this->createResponse(400, [], $e->getMessage());
+        }
 
-            return $this->sendResponse($user, 'User updated successfully.');
-
+        return $this->sendResponse($user, 'User updated successfully.');
     }
-
-
 }
