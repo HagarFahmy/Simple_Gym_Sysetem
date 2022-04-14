@@ -61,7 +61,7 @@ class GymManagerController extends CommonController
    {
        $this->deleteImage($gymManager->image, 'admins');
        $gymManager->delete();
-       return to_route('dashboard.gym-managers.index');
+       return response()->json(['success' => true]);
 
    }
 

@@ -20,7 +20,7 @@
         </li>
         @can(['list-gymManagers', 'create-gymManagers'], 'admin')
             <li>
-                <a href="../widgets.html">
+                <a href="{{ route('dashboard.gym-managers.index') }}">
                     <i class="fa-regular fa-address-card nav-icon"></i> <span>Gym Managers</span>
                     <span class="pull-right-container">
                     </span>
