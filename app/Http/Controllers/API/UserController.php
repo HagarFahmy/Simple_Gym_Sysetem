@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller as Controller;
-use Illuminate\Http\Request;
+use App\Http\Resources\AttendanceResource;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Revenue;
+use App\Models\User;
 use App\Models\Attendance;
 
 
@@ -38,5 +39,11 @@ class UserController extends Controller
           'Total training sessions' => $totalTrainingSessions,
           'Remaining training sessions' => $remainingTrainingSessions,
       ]);
+    }
+
+    public function getAttendanceHistory()
+    {
+        $userID = Auth::id();
+        return AttendanceResource::collection(User::where('id', $userID)->first()->attendances_sessions);
     }
 }

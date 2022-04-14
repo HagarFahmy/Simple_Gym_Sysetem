@@ -53,7 +53,7 @@ class AuthController extends BaseController
 
 
         // Upload the image to server local
-        // $nameImg->move(public_path('images/users'), $nameImgDB);
+        $nameImg->move(public_path('images/users'), $nameImgDB);
 
         // Creating token
         $success['token'] =  $user->createToken('justAToken')->plainTextToken;
@@ -93,7 +93,7 @@ class AuthController extends BaseController
 
             // Creating token and save it to the user
             $user->remember_token = $success['token'];
-            $user->last_login = date(Carbon::now()->toDateTimeString());
+            $user->last_login_at = date(Carbon::now()->toDateTimeString());
             $user->save();
 
             return $this->sendResponse($success, 'User login successfully.');
