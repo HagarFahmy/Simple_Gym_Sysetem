@@ -4,11 +4,11 @@
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Create City Manager</h3>
+            <h3 class="box-title">Create Gym Manager</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" action="{{ route('dashboard.city-managers.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="form-horizontal" action="{{ route('dashboard.gym-managers.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="box-body">
 
@@ -76,22 +76,22 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="city" class="col-sm-2 control-label">City</label>
+                    <label for="gym" class="col-sm-2 control-label">Gym</label>
 
                     <div class="col-sm-10">
 
-                        <select name="city_id" class="form-control" id="city">
-                            @foreach($cities as $key => $value)
-                                <option value="{{ $key }}" {{ old('city_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
+                        <select name="gym_id" class="form-control" id="gym">
+                            @foreach($gyms as $key => $value)
+                                <option value="{{ $key }}" {{ old('gym_id') == $key ? 'selected' : '' }}>{{ $value }}</option>
                             @endforeach
                         </select>
-                        @if($errors->has('city_id'))
-                            <span class="text-danger">{{ $errors->first('city_id') }}</span>
+                        @if($errors->has('gym_id'))
+                            <span class="text-danger">{{ $errors->first('gym_id') }}</span>
                         @endif
                     </div>
                 </div>
-
-                <!-- <div class="form-group">
+<!-- 
+                <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Image</label>
 
                     <div class="col-sm-10">
