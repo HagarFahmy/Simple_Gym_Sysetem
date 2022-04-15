@@ -12,7 +12,7 @@ use Laravel\Cashier\Billable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use  Billable , HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use  Billable, HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -26,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'gender',
         'date_of_birth',
-        'profile_image' ,
+        'profile_image',
         'gym_id',
     ];
 
@@ -49,17 +49,21 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function training_sessions() // done
+    public function training_sessions()
     {
-        return $this->belongsToMany(TrainingSession::class, 'user_training_session', 'training_session_id', 'user_id');
+        return $this->belongsToMany(TrainingSession::class, 'attendances_sessions', 'user_training_session', 'training_session_id', 'user_id');
+    }
+
+    public function attendances_sessions()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     public function gym()
     {
         return $this->belongsTo(Gym::class);
-
     }
-     public function getImagePathAttribute()
+    public function getImagePathAttribute()
     {
         return asset('storage/images/' . self::LOCATION . '/' . $this->profile_image);
     }

@@ -22,15 +22,15 @@ class RevenueDataTable extends DataTable
     public function query(Revenue $model)
     {
         if(auth()->user()->hasRole('Super Admin')) {
-        return $model->with('user','gym','package','gym.city');
+        return $model->with('user','gym','training_packages','gym.city');
         }
 
         if(auth()->user()->hasRole('City Manager')) {
-            return $model->with('user','gym','package')->whereIn('gym_id', Gym::where('city_manager_id', Auth::id())->get()->pluck('id'));
+            return $model->with('user','gym','training_packages')->whereIn('gym_id', Gym::where('city_manager_id', Auth::id())->get()->pluck('id'));
             }
 
          if(auth()->user()->hasRole('Gym Manager')) {
-            return $model->with('user','gym','package')->where('gym_id', Admin::where('id', Auth::user()->id)->get()->first()->gym_id);
+            return $model->with('user','gym','training_packages')->where('gym_id', Admin::where('id', Auth::user()->id)->get()->first()->gym_id);
             }
          
     }
@@ -52,7 +52,7 @@ class RevenueDataTable extends DataTable
             Column::make('id'),
             Column::make('user.name')->title('user name'),
             Column::make('user.email')->title('user email'),
-            Column::make('package.name')->title('training package name'),
+            Column::make('training_packages.name')->title('training package name'),
             Column::make('amount_paid')->title('amount paid'),
          ];
 
