@@ -9,7 +9,7 @@
             <div class="text-center  ">
                 <ul class="list-group list-group-flush fs-5">
                     <li class="list-group-item"> <span>Training Packages Name :</span> {{$package->name}}</li>
-                    <li class="list-group-item "> <span>Price:</span>{{$package->price}}</li>
+                    <li class="list-group-item "> <span>Price:</span>{{$package->price/100}}$</li>
                     <li class="list-group-item "> <span>Sessions Number:</span>{{$package->sessions_number}}</li>
                 </ul>
             </div>
