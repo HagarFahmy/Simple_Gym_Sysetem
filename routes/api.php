@@ -46,7 +46,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth:sanctum'])->name('verification.send');
 
 // Update user data route
-Route::post("update", [AuthController::class,'update'])->middleware('auth:sanctum');
+Route::post("update", [UserController::class,'update'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
