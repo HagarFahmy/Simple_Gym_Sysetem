@@ -25,7 +25,7 @@ class GymManagerController extends CommonController
     
    public function create()
    {
-        $gyms = Gym::doesnthave('gym_managers')->pluck('name', 'id');
+        $gyms = Gym::all()->pluck('name', 'id');
        return view('dashboard.gymManager.create',['gyms'=>$gyms]);
    }
 
@@ -45,7 +45,7 @@ class GymManagerController extends CommonController
 
    public function edit(Admin $gymManager )
    {
-       $gyms = Gym::doesnthave('gymManager')->pluck('name', 'id');
+       $gyms = Gym::all()->pluck('name', 'id');
        return view('dashboard.gymManager.edit',['gymManager'=>$gymManager, 'gyms' => $gyms]);
    }
 
