@@ -24,7 +24,6 @@
                         <th>Price</th>
                         <th>Session number</th>
                         <th>Created</th>
-                        <th>Canceled</th>
                         <th style="width: 250px">Action</th>
                     </tr>
                 </thead>
@@ -33,10 +32,9 @@
                         <tr>
                             <td>{{$package->id}}</td>
                             <td>{{$package->name }}</td>
-                            <td>{{$package->price}}</td>
+                            <td>{{$package->price/100}}$</td>
                             <td>{{$package->sessions_number}}</td>
                             <td>{{$package->created_at}}</td>
-                            <td>{{$package->deleted_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     @can('update-trainingPackages', 'admin')
