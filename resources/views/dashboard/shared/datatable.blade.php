@@ -61,7 +61,7 @@
                             success: function(response) {
                                 if(response.status == 1) {
                                     Swal.fire('Can\'t delete gym cause it have training session', '', 'error')
-                                } else if (response.status == 0){
+                                } else if (response.status == 2){
                                     Swal.fire('Can\'t delete cause there are users attend this seesion', '', 'error')
                                 }else{
                                     Swal.fire('Deleted!', '', 'success')

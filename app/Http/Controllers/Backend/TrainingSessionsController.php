@@ -64,10 +64,10 @@ class TrainingSessionsController extends CommonController
         if ($arr->contains('id',$trainingSession->id))
         {
             $trainingSession->delete();
-            return response()->json(['status' => 2]);
+            return response()->json(['status' => 0]);
         }
         else{
-            return response()->json(['status' => 1]);
+            return response()->json(['status' => 2]);
         }
         
     }

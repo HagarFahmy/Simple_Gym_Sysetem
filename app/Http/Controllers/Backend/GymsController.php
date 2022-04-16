@@ -66,10 +66,10 @@ class GymsController extends CommonController
     if($gym->training_sessions->count()==0)
     {
         $gym->delete();
-        return response()->json(['status' => 2]);
+        return response()->json(['status' => 0]);
     }
     else{
-        return response()->json(['status' => 0]);
+        return response()->json(['status' => 1]);
     }
         
         
