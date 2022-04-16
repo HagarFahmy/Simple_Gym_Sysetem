@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\TrainingPackage;
 use Illuminate\Http\Request;
 
-class TrainingPackagesController extends Controller
+class TrainingPackagesController extends CommonController
 {
     protected string $module = 'training-packages';
 
@@ -17,10 +17,10 @@ class TrainingPackagesController extends Controller
     {
         $this->modelDatatable = $modelDatatable;
     }
-    public function index(){
-        $packages =TrainingPackage::get();
-        return view('dashboard.trainingPackages.index', compact('packages'));
-    }
+    // public function index(){
+    //     $packages =TrainingPackage::get();
+    //     return view('dashboard.trainingPackages.index', compact('packages'));
+    // }
     public function show($id)
     {
         $package = TrainingPackage::findOrFail($id);
@@ -49,9 +49,10 @@ class TrainingPackagesController extends Controller
         ]);
         return redirect(route('dashboard.training-packages.show', $id));
     }
+
     public function destroy($id)
     {
         TrainingPackage::findOrFail($id)->delete();
-        return back();
+        return response()->json(['status' => 0]);
     }
 }

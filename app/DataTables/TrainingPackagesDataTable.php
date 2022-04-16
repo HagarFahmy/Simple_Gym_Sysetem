@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\TrainingPackage;
+use Ramsey\Uuid\Type\Decimal;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -58,13 +59,13 @@ class TrainingPackagesDataTable extends DataTable
      */
     protected function getColumns()
     {
+        
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('price'),
+            Column::make('price')->title('price'),
             Column::make('sessions_number'),
-            Column::make('created_at'),
-            Column::make('deleted_at'),
+           Column::make('created_at'),
         ];
     }
 
