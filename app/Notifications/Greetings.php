@@ -20,6 +20,7 @@ class Greetings extends Notification implements ShouldQueue
      */
     public function __construct($details)
     {
+        // Initializing the greeting body message object.
         $this->details = $details;
     }
 
@@ -43,8 +44,9 @@ class Greetings extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting($this->details['greeting'])
-            ->line($this->details['body'])
+            // Starting first line.
+            ->greeting($this->details['greeting']) // Line break.
+            ->line($this->details['body']) // Line break.
             ->line($this->details['thanks']);
     }
 

@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Command structure syntax.
         $schedule->command('notify:users-not-logged-in-for-month')->everyMinute()->timezone('Africa/Cairo');
     }
 
@@ -25,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
