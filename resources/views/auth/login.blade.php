@@ -27,6 +27,22 @@
             </div>
             <div class="row">
 
+                <div class="form-group" style="margin-left:20px">
+                    <label for="password">
+                        <a href="{{route('password.request')}}" class="float-right">
+                            Forgot Password?
+                        </a>
+                    </label>
+                </div>
+
+                <div class="form-group" style="margin-left: 240px ; margin-top:-40px">
+                    <div class="custom-checkbox custom-control">
+                        <input type="checkbox" name="remember" id="remember" class="custom-control-input">
+                        <label for="remember" class="custom-control-label">Remeber Me</label>
+                    </div>
+                </div>
+
+
                 <div class="col-xs-4">
                     <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                 </div>

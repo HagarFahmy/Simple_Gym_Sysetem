@@ -12,7 +12,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class CoachesDataTable extends DataTable
 {
-    
+
     public function dataTable($query)
     {
         return datatables()
@@ -21,18 +21,18 @@ class CoachesDataTable extends DataTable
             ;
     }
 
-   
+
     public function query(Coach $model)
     {
-        
+
         return $model->with('gym');
-    
+
     }
 
     public function html()
     {
         return $this->builder()
-                    ->setTableId('coachesdatatable-table')
+                    ->setTableId('trainingpackagesdatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
@@ -40,19 +40,19 @@ class CoachesDataTable extends DataTable
                     ->addAction(['width' => '200px']);
     }
 
-    
+
     protected function getColumns()
     {
         return [
 
-            
+
             Column::make('id'),
             Column::make('name'),
             //Column::make('gym_id'),
             Column::make('gym.name')->title('Gym Name'),
-            
-            
-        ];    
+
+
+        ];
     }
 
     /**

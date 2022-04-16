@@ -48,12 +48,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth:sanctum'])->name('verification.send');
 
-// Update user data route
-Route::post("update", [AuthController::class, 'update'])->middleware('auth:sanctum');
 
 Route::controller(UserController::class)->middleware(['auth:sanctum', 'verified'])->group(function () {
     // Remaining training of the logged user sessions route
-    Route::get('/training-sessions', [UserController::class, 'remainingTrainingSessionsOfTheUser']);
+    Route::get('/training-sessions', 'remainingTrainingSessionsOfTheUser');
     // Sessions history of the user logged route
-    Route::get('/sessions-history', [UserController::class, 'getAttendanceHistoryOfTheUser']);
+    Route::get('/sessions-history', 'getAttendanceHistoryOfTheUser');
+    // Update user information data route
+    Route::post("update", 'update');
 });

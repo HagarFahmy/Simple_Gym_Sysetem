@@ -103,34 +103,12 @@ class AuthController extends BaseController
         }
     }
 
-    public function update(Request $request)
+    public function logout(Request $request)
     {
-        $user = Auth()->user(); // it should be $user = Auth::id();
-        $validator = Validator::make($request->all(), [
-            'name' => 'nullable',
-            'email' => 'nullable|string|unique:users,email,' . $user->id,
-            'gender' => 'nullable',
-            'date_of_birth' => 'nullable',
-            'profile_image' => 'nullable|image|mimes:jpg,jpeg',
-            'password' => 'nullable|min:6',
-        ]);
-
-        if ($validator->fails()) {
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
-
-        $user->name = $request->name ? $request->name : $user->name;
-        $user->email = $request->email ? $request->email : $user->email;
-        $user->gender = $request->gender ? $request->gender : $user->gender;
-        $user->birth_date = $request->birth_date ? $request->birth_date : $user->birth_date;
-        $user->password = $request->password ? $request->bcrypt($request->password) : $user->password;
-        $user->profile_image = $request->profile_image;
-        try {
-            $user->save();
-        } catch (\Exception $e) {
-            return $this->createResponse(400, [], $e->getMessage());
-        }
-
-        return $this->sendResponse($user, 'User updated successfully.');
+        $accessToken = $request->header('Access-Token');
+        $user = User::where('remember_token', $accessToken)->first()
+            ->update(['remember_token' => null]);
+        return $this->createResponse(200, "Logout Successfully");;
     }
+    
 }

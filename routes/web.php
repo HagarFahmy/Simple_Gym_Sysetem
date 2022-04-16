@@ -14,6 +14,12 @@ use \App\Http\Controllers\Backend\UserController;
 use \App\Http\Controllers\Backend\AttendenceController;
 use \App\Http\Controllers\Backend\BuyPackageController;
 use \App\Http\Controllers\Backend\RevenueController;
+use \App\Http\Controllers\Auth\ForgotPasswordController;
+use \App\Http\Controllers\Auth\ResetPasswordController;
+
+
+
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -31,12 +37,19 @@ use \App\Http\Controllers\Backend\RevenueController;
 //Auth::routes();
 
 
+
 Config::set('auth.defines', 'admin');
 
 
 Route::get('dashboard/login', [AdminAuthController::class, 'login'])->name('loginPage');
 Route::post('dashboard/login', [AdminAuthController::class, 'doLogin'])->name('dashboard.login');
 
+///////////////
+Route::post('admin-password/email',[ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('admin-password/reset',[ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('admin-password/reset',[ResetPasswordController::class, 'reset'])->name('password.update');
+    Route::get('admin-password/reset/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+///////////////
 Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => 'dashboard.'], function () {
 
     Route::get('home', [\App\Http\Controllers\Backend\HomeController::class, 'index'])->name('home');

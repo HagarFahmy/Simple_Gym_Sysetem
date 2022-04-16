@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
+use App\Notifications\ResetPasswordNotification;
+
 
 class Admin extends Authenticatable
 {
@@ -36,11 +38,6 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function getImagePathAttribute()
     {
         return asset('storage/images/' . self::LOCATION . '/' . $this->image);
@@ -62,4 +59,13 @@ class Admin extends Authenticatable
         return $this->belongsTo(Gym::class);
     }
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
 }
