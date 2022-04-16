@@ -59,10 +59,6 @@ class Admin extends Authenticatable
         return $this->belongsTo(Gym::class);
     }
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
 
     public function sendPasswordResetNotification($token)
     {

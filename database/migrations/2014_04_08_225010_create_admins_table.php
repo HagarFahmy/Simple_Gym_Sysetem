@@ -39,7 +39,8 @@ class CreateAdminsTable extends Migration
             // gym manager 
             $table->unsignedBigInteger('gym_id')->nullable();
             $table->foreign('gym_id')->references('id')->on('gyms')->onDelete('cascade');
-      
+            
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -64,12 +64,11 @@ class TrainingSessionsController extends CommonController
         if ($arr->contains('id',$trainingSession->id))
         {
             $trainingSession->delete();
-            return response()->json(['success' => true]);
+            return response()->json(['status' => 2]);
         }
         else{
-            Alert::error("Can't delete cause there are users attend this seesion");
+            return response()->json(['status' => 1]);
         }
-        return to_route('dashboard.training-sessions.index');
         
     }
 }

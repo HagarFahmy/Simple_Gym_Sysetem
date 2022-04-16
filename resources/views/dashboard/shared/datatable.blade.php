@@ -59,15 +59,19 @@
                                 id: id
                             },
                             success: function(response) {
+                                if(response.status == 1) {
+                                    Swal.fire('Can\'t delete gym cause it have training session', '', 'error')
+                                } else if (response.status == 0){
+                                    Swal.fire('Can\'t delete cause there are users attend this seesion', '', 'error')
+                                }else{
+                                    Swal.fire('Deleted!', '', 'success')
+                                }
+                                console.log(response.status);
                                 $("#success").html(response.message)
                                 refreshTable()
                             },
-                            // error: function(response) {
-                            //     $("#error").html(response.message)
-                            //     refreshTable()
-                            // }
+                           
                         });
-                        Swal.fire('Deleted!', '', 'success')
                     } else if (result.isDenied) {
                         Swal.fire('Changes are not saved', '', 'error')
                     }
