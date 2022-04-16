@@ -20,12 +20,16 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Registration and login routes
-Route::controller(AuthController::class)->group(function(){
-    Route::post('register', 'register');
-    Route::post('login', 'login');
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });
 
+// Registration and login routes
+Route::controller(AuthController::class)->group(function () {
+    Route::post('register', 'register');
+    Route::post('login', 'login');
+    Route::post('logout', 'logout');
+});
 
 // Email verifications routes
 Route::get('/email/verify', function () {
@@ -36,7 +40,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     $request->fulfill();
     $user = Auth::user();
     Auth::login($user);
-    Notification::send($user,new Greetings($user));
+    Notification::send($user, new Greetings($user));
     return response(['success' =>  "Your email verified successfully"]);
 })->middleware(['auth:sanctum'])->name('verification.verify');
 
@@ -45,22 +49,12 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth:sanctum'])->name('verification.send');
 
-// Update user data route
-Route::post("update", [UserController::class,'update'])->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(UserController::class)->middleware(['auth:sanctum', 'verified'])->group(function () {
+    // Remaining training of the logged user sessions route
+    Route::get('/training-sessions', 'remainingTrainingSessionsOfTheUser');
+    // Sessions history of the user logged route
+    Route::get('/sessions-history', 'getAttendanceHistoryOfTheUser');
+    // Update user information data route
+    Route::post("update", 'update');
 });
-
-
-// Route::get('/training-sessions',[UserController::class,'remainingTrainingSessions']);
-// ->middleware(['auth:sanctum','verified']);
-
-Route::controller(UserController::class)->middleware(['auth:sanctum','verified'])->group(function(){
-    Route::get('/training-sessions',[UserController::class,'remainingTrainingSessions']);
-    Route::get('/sessions-history',[UserController::class,'getAttendanceHistory']);
-});
-
-
-
-

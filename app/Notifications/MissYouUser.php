@@ -20,6 +20,7 @@ class MissYouUser extends Notification implements ShouldQueue
      */
     public function __construct($user)
     {
+        // Initializing the user information object.
         $this->user = $user;
     }
 
@@ -43,8 +44,9 @@ class MissYouUser extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->greeting('Hello Dear. ' . $this->user->name)
-            ->line('Gym team is  missing you')
+            // Starting first line.
+            ->greeting('Hello Dear. ' . $this->user->name) // Line break.
+            ->line('Gym team is  missing you') // Line break.
             ->line('We hope you visiting us again, Gym team wishing you the best 🔥🔥🔥');
     }
 

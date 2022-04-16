@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Notification;
 use App\Notifications\MissYouUser;
 
 class NotifyUsers extends Command
@@ -31,9 +30,11 @@ class NotifyUsers extends Command
      */
     public function handle()
     {
-        $users = User::whereDate('last_login' ,'<' ,Carbon::now()->subMonth()->toDateTimeString())->get();
-        foreach($users as $user) {
+        // Notify the user by an email if he didn't log in for 1 month.
+        $users = User::whereDate('last_login', '<', Carbon::now()->subMonth()->toDateTimeString())->get();
+        // For every user who match the rule above will be notified.
+        foreach ($users as $user) {
             $user->notify(new MissYouUser($user));
-          }
+        }
     }
 }

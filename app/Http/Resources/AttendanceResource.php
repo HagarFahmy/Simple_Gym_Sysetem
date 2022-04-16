@@ -14,6 +14,7 @@ class AttendanceResource extends JsonResource
      */
     public function toArray($request)
     {
+        // Json structure.
         return [
             'session_name' => $this->training_session->name,
             'gym_name' => $this->training_session->gym->name,

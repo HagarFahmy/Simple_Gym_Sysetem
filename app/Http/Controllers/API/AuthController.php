@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 use App\Notifications\Greetings;
 use Illuminate\Auth\Events\Registered;
 use Carbon\Carbon;
-// use Illuminate\Support\Facades\Auth;
 
 class AuthController extends BaseController
 {
@@ -18,10 +17,10 @@ class AuthController extends BaseController
 
     public function register(Request $request)
     {
-        // Array of user inputs
+        // Array for the user inputs.
         $input = $request->all();
 
-        // Validations for the user inputs
+        // Validations for the user inputs.
         $validator = Validator::make($input, [
             'name' => 'required|min:5|max:50',
             'email' => 'required|email|string|max:50|unique:users',
@@ -32,16 +31,16 @@ class AuthController extends BaseController
             'gym_id' => 'required'
         ]);
 
-        // Validation failed or missing inputs
+        // Validation failed or missing inputs will return error JSON message.
         if ($validator->fails()) {
             return $this->handleError($validator->errors());
         }
 
-        // Profile Image
+        // Profile Image name serialization.
         $nameImg = request()->file('profile_image');
         $nameImgDB = 'Image-' . $input['name'] . '-' .  uniqid() . '.' . $nameImg->getClientOriginalExtension();
 
-        // Creating and saving the user credentials to database
+        // Saving the user credentials to database.
         $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
@@ -52,25 +51,24 @@ class AuthController extends BaseController
             'date_of_birth' =>  $input['date_of_birth']
         ]);
 
-
-        // Upload the image to server local
+        // Upload the image to server local (public/images/users/.....).
         $nameImg->move(public_path('images/users'), $nameImgDB);
 
-        // Creating token
+        // Creating token to authenticate the user wherever he goes in the site.
         $success['token'] =  $user->createToken('justAToken')->plainTextToken;
         $success['name'] =  $user->name;
 
-        // Email greetings body
+        // Email greetings body.
         $details = [
             'greeting' => 'Hi ' . $input['name'] . ' from ITI with love ❤️',
             'body' => 'Your registration is completed',
             'thanks' => 'thank you.',
         ];
 
-        // Sending Queued Email to greet user after registration immediately
+        // Sending Queued Email to greet user after registration immediately.
         $user->notify(new Greetings($details));
 
-        // Sending verification email
+        // Sending verification email.
         event(new Registered($user));
 
         return $this->handleResponse($success, 'User successfully registered! ya welcome ya welcome');
@@ -78,27 +76,29 @@ class AuthController extends BaseController
 
     public function login(Request $request)
     {
-        // Validate inputs
+        // Validate login inputs.
         $input = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        // Get the user cardinals if he/she exists
+        // Get the user cardinals if he/she exists in the database.
         $user = User::where('email', $input['email'])->first();
 
-        // Checking the cardinals
+        // Checking the cardinals.
         if (!$user || $user->password != bcrypt($input['password'])) {
             $success['token'] =  $user->createToken('justAToken')->plainTextToken;
             $success['name'] =  $user->name;
 
-            // Creating token and save it to the user
+            // Creating token and save it to the user.
             $user->remember_token = $success['token'];
             $user->last_login_at = date(Carbon::now()->toDateTimeString());
             $user->save();
 
+            // Api Json response for success login.
             return $this->sendResponse($success, 'User login successfully.');
         } else {
+            // Api Json response for failed/unauthorized login.
             return $this->sendError('Unauthorized.', ['error' => 'Unauthorized you cant']);
         }
     }
