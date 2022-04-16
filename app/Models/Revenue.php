@@ -25,6 +25,6 @@ class Revenue extends Model
 
     public function training_packages()
     {
-        return $this->hasMany(TrainingPackage::class, 'id', 'user_id', 'sessions_number');
+        return $this->belongsTo(TrainingPackage::class,'package_id','id', 'user_id', 'sessions_number');
     }
 }
