@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Revenue;
 use App\Models\User;
 use App\Models\Attendance;
-use App\Http\Traits\AuthTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,12 +22,12 @@ class UserController extends Controller
         // Initializing variable.
         $totalTrainingSessions = 0;
         // Getting all training packages that user already bought.
-        $packages = Revenue::with('training_packages')->where('user_id', $userId)->get();
+        $packages = Revenue::with('training_package_sessions')->where('user_id', $userId)->get();
         // If the user have packages.
         if ($packages != null) {
             foreach ($packages as $package) {
                 // Fetching all total sessions count by this user.
-                $totalTrainingSessions += $package->training_packages[0]->sessions_number;
+                $totalTrainingSessions += $package->training_package_sessions[0]->sessions_number;
             }
             // Fetching all the user attendance
             $attendedSessions = Attendance::where('user_id', $userId)->count();
@@ -82,5 +81,4 @@ class UserController extends Controller
         $user->save();
         return $this->sendResponse($user, 'User updated successfully.');
     }
-
 }

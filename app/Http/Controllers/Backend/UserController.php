@@ -59,7 +59,7 @@ class UserController extends CommonController
    {
     $this->deleteImage($user->profile_image, 'users');
     $user->delete();
-    return response()->json(['success' => true]);
+    return response()->json(['status' => 0]);
 
    }
 

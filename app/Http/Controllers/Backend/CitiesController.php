@@ -47,6 +47,6 @@ class CitiesController extends CommonController
         if($city->cityManager!=null)
         $city->cityManager->update(['status' => false]);
         $city->delete();
-        return response()->json(['success' => true]);
+        return response()->json(['status' => 0]);
     }
 }

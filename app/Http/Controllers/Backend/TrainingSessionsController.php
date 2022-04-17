@@ -60,8 +60,8 @@ class TrainingSessionsController extends CommonController
 
     public function destroy(TrainingSession $trainingSession)
     {
-        $arr=TrainingSession::doesntHave('users')->get();
-        if ($arr->contains('id',$trainingSession->id))
+       
+        if ($trainingSession->users->count() == 0)
         {
             $trainingSession->delete();
             return response()->json(['status' => 0]);

@@ -61,7 +61,7 @@ class GymManagerController extends CommonController
    {
        $this->deleteImage($gymManager->image, 'admins');
        $gymManager->delete();
-       return response()->json(['success' => true]);
+       return response()->json(['status' => 0]);
 
    }
 
