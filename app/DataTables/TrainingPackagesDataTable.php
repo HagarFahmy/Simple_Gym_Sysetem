@@ -22,6 +22,9 @@ class TrainingPackagesDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('price', function (TrainingPackage $package){
+                return $package->price/100 . '$';
+            })
             ->addColumn('action', 'dashboard.trainingPackages.action');
     }
 
@@ -59,7 +62,7 @@ class TrainingPackagesDataTable extends DataTable
      */
     protected function getColumns()
     {
-        
+
         return [
             Column::make('id'),
             Column::make('name'),
