@@ -17,7 +17,10 @@ class RevenueDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables()
-            ->eloquent($query);
+            ->eloquent($query)
+            ->editColumn('amount_paid', function (Revenue $revenue){
+                return $revenue->amount_paid/100 . '$';
+            });
     }
 
     public function query(Revenue $model)
