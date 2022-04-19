@@ -50,9 +50,9 @@ Route::post('admin-password/email',[ForgotPasswordController::class, 'sendResetL
     Route::post('admin-password/reset',[ResetPasswordController::class, 'reset'])->name('password.update');
     Route::get('admin-password/reset/{token}',[ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 ///////////////
-Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => 'dashboard.'], function () {
-
+Route::group(['middleware' => ['admin:admin','isbanned'], 'prefix' => 'dashboard/', 'as' => 'dashboard.'], function () {
     Route::get('home', [\App\Http\Controllers\Backend\HomeController::class, 'index'])->name('home');
+   
     Route::Resource('city-managers',CityManagerController::class);
     Route::Resource('gym-managers',GymManagerController::class);
     Route::Resource('coaches',CoachController::class);
@@ -71,6 +71,10 @@ Route::group(['middleware' => 'admin:admin', 'prefix' => 'dashboard/', 'as' => '
     Route::Resource('revenue',RevenueController::class);
     Route::get('/total-revenue', [RevenueController::class, 'totalRevenue'])->name('revenue.total');
 
+    // ban and un ban gym manager
+    Route::post('gym-managers/{id}/ban', [GymManagerController::class, 'ban'])->name('gym-managers.ban');
+
+    
     Route::get('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 

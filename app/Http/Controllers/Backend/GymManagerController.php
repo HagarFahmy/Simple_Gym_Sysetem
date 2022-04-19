@@ -8,7 +8,7 @@ use App\Http\Traits\ImageTrait;
 use App\Models\Admin;
 use App\Models\Gym;
 use Illuminate\Support\Str;
-
+use Alert;
 
 class GymManagerController extends CommonController
 {
@@ -64,6 +64,30 @@ class GymManagerController extends CommonController
        return response()->json(['status' => 0]);
 
    }
+
+   public function ban ($id)
+   {
+      $gymManager=Admin::findOrFail($id);
+
+       if($gymManager->status == 0)
+       {
+        $gymManager->status = 1;
+        $gymManager->save();
+        Alert::success("User UnBanned Successfully");
+        return to_route('dashboard.gym-managers.index');
+       }
+       else
+       {
+        $gymManager->status = 0;
+        $gymManager->save();
+        Alert::success("User Banned Successfully");
+        return to_route('dashboard.gym-managers.index');
+
+       }
+
+   }
+   
+
 
 
 }

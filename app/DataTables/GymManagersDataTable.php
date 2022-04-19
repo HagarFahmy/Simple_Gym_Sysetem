@@ -3,12 +3,14 @@
 namespace App\DataTables;
 
 use App\Models\Admin;
-use App\Models\City;
+use App\Models\Gym;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Illuminate\Support\Facades\Auth;
+
 
 class GymManagersDataTable extends DataTable
 {
@@ -17,26 +19,34 @@ class GymManagersDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'dashboard.cityManager.action');
+            ->addColumn('action', 'dashboard.gymManager.action');
     }
 
    
     public function query(Admin $model)
     {
-        $model= Admin::role('City Manager')->with('city');
-        return $this->applyScopes($model);
+        if(auth()->user()->hasRole('Super Admin')) {
+            $model= Admin::role('gym Manager')->with('gym');
+            return $this->applyScopes($model);
+        }
+         else if(auth()->user()->hasRole('City Manager')) {
+
+            $model= Admin::role('gym Manager')->with('gym')->whereIn('gym_id', Gym::where('city_manager_id', Auth::id())->get()->pluck('id'));
+            return $this->applyScopes($model);        }
+
+
     }
 
    
     public function html()
     {
         return $this->builder()
-                    ->setTableId('citymanagersdatatable-table')
+                    ->setTableId('gymmanagersdatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1)
-                    ->addAction(['width' => '200px']);
+                    ->addAction(['width' => '250px']);
     }
 
   
@@ -46,11 +56,8 @@ class GymManagersDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('email'),
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(100)
-            //       ->addClass('text-center'),
+            Column::make('gym.name')->title('gym name'),
+            
             
         ];
     }
